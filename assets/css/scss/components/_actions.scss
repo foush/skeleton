@@ -1,0 +1,76 @@
+//==================================================================
+// Actions Partial
+// Styles for actions menus, etc.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Actions Menus
+// =================================================================
+.actions {
+	@include rem(margin, 32px 0);
+
+	h3 {
+		margin-top: 0; border-bottom: 1px solid lighten($color_silver_chalice, 20%); color: $color_tundora;
+	}
+	ul {
+		padding: 0; margin: 0; list-style: none;
+	}
+
+	// Other Actions
+	//--------------------------------------------------------------
+	&.other-actions {}
+	&.other-actions li {
+		border-bottom: 1px solid lighten($color_silver_chalice, 20%);
+		@include rem(padding, 0 0 10px);
+		@include rem(margin, 0 0 10px);
+	}
+
+}
+
+// Actions Bar
+// =================================================================
+.action-bar {
+	background-color: lighten($color_silver_chalice, 35%); border-bottom-left-radius: $corners; border-bottom-right-radius: $corners;
+	@include display(flex);
+	@include align-items(center);
+	@include justify-content(space-between);
+	@include rem(padding, 20px);
+	@include rem(margin, 0 0 32px);
+
+	&.naked {
+		padding: 0; background: none;
+	}
+
+	.svg {
+		position: relative;
+		@include rem(top, 1px);
+		@include rem(width, 16px);
+		@include rem(height, 16px);
+	}
+	.svg * {
+		fill: $color_silver_chalice;
+	}
+	h1 {
+		@include align-self(center);
+	}
+	button, .button {
+		margin-bottom: 0;
+	}
+	.fieldset {
+		margin: 0;
+		@include align-self(center);
+		@include rem(padding, 0 0 0 52px);
+	
+		fieldset {
+			display: inline-block;
+		}
+		legend {
+			position: absolute; padding: 0;
+			@include rem(width, 1px);
+			@include rem(margin, 1px);
+		}
+	}
+	.buttons {
+		@include align-self(center);
+	}
+}

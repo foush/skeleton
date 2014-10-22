@@ -1,0 +1,67 @@
+//==================================================================
+// Search Form Partial
+// Styles for the search form.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Primary Search
+// =================================================================
+.search {
+	background-color: lighten($color_silver_chalice, 35%); border-bottom-left-radius: $corners; border-bottom-right-radius: $corners;
+	@include display(flex);
+	@include align-items(center);
+	@include rem(padding, 20px);
+	@include rem(margin, 0 0 32px);
+
+	.field, input[type="submit"], .button {
+		margin: 0;
+	}
+	.advanced-search {
+		@include flex-grow(2);
+	}
+	.new-claim {
+		@include align-self(flex-end);
+	}
+}
+
+
+// Search Bar
+// =================================================================
+.search-bar {
+	@include rem(margin, 0 0 32px);
+
+	.options.standard {
+		@include display(flex);
+		@include align-items(center);
+		@include justify-content(space-between);
+		@include rem(margin, 0 0 16px);
+
+		label {
+			display: block; width: auto;
+		}
+		.field, button {
+			margin: 0;
+		}
+		button {
+			@include rem(margin-top, 21px);
+		}
+		.select2-container {
+			@include rem(width, 100px);
+		}
+	}
+	.options.advanced {
+		background-color: lighten($color_silver_chalice, 35%); font-size: 0; line-height: 0;
+		@include rem(padding, 20px);
+		@include rem(border-radius, $corners);
+
+		.field {
+			display: inline-block; width: 50%; line-height: 1.5;
+			@include rem(font-size, 16px);
+		}
+		.buttons {
+			display: block; width: 100%; line-height: 1.5; text-align: right;
+			@include rem(font-size, 16px);
+		}
+	}
+
+}

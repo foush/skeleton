@@ -1,0 +1,62 @@
+//==================================================================
+// Global Settings
+// Central location for project-level variables.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+
+// Layout Settings
+//==================================================================*/
+
+	// Media Queries
+	//--------------------------------------------------------------*/
+	$desktop_wide: new-breakpoint(min-width 1280px 16);
+
+	// Corners
+	//--------------------------------------------------------------*/
+	$corners: 3px;
+
+	// Animations
+	//--------------------------------------------------------------*/
+	$animation_speed: .15s;
+
+
+// Color Settings
+//==================================================================*/
+
+	// Brand Specific
+	//--------------------------------------------------------------*/
+	$color_orient: #005685;
+	$color_silver_chalice: #9d9d9d;
+	$color_state_red: #c7202c;
+	$color_emerald: #33cc66;
+	$color_red_orange: #ff3333;
+	$color_cerulean: #0098eb;
+	$color_tundora: #444444;
+
+	$color_excel: #38b449;
+	$color_pdf: #f05a09;
+	$color_powerpoint: #f6491b;
+	$color_word: #1094c5;
+
+
+// Typography Settings
+//==================================================================*/
+
+	// Font Families
+	//==================================================================*/
+	$font_regular: "Open Sans", Helvetica, Arial, sans-serif;
+	
+
+	// Base Size (must use px value)
+	//--------------------------------------------------------------*/
+	$base_font_color: $color_tundora;
+	$base_font_family: $font_regular;
+	$base_font_size: 14px;
+	$base_line_height: 1.5;
+
+
+	// Links
+	//--------------------------------------------------------------*/
+	$color_link: $color_orient;
+	$color_link_hover: $color_cerulean;

@@ -1,0 +1,37 @@
+//==================================================================
+// Content Partial
+// Styles for content layout.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Content
+// =================================================================
+.content-container {
+    @include rem(padding-bottom, 57px);
+
+    .secondary-wrapper {
+        background-color: $color_orient; color: #fff;
+        @include display(flex);
+        @include align-items(center);
+        @include rem(margin, 40px 0);
+        @include rem(border-radius, $corners);
+    
+        h2 {
+            color: #fff;
+            @include rem(margin, 10px 20px);
+        }
+    }
+
+    .has-aside {
+        @include display(flex);
+    
+        .content {
+            width: 73%;
+            @include order(2);
+        }
+        .aside {
+            width: 25%; margin-right: 2%;
+        }
+    }
+
+}

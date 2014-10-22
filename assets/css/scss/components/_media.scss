@@ -1,0 +1,159 @@
+//==================================================================
+// Media Partial
+// Styles for various multimedia elements.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Figures & Images
+// =================================================================
+figure {
+
+	a {}
+	a > img {}
+	a:hover > img {}
+
+}
+
+
+// Videos
+// =================================================================
+video {}
+
+
+// iFrames
+// =================================================================
+iframe {}
+
+
+// Fresco - Customization
+// =================================================================
+.fr-close {}
+
+
+// Google Maps
+// =================================================================
+.google-map img {}
+
+
+// Photo Entries
+// =================================================================
+.photo-wrapper {
+	position: relative; background-color: lighten($color_silver_chalice, 35%); overflow: hidden;
+	@include display(flex);
+	@include rem(padding, 20px 20px 20px 52px);
+	@include rem(margin, 16px 0);
+	@include rem(border-radius, $corners);
+
+	.svg {
+		position: relative;
+		@include rem(top, -2px);
+		@include rem(width, 16px);
+		@include rem(height, 16px);
+	}
+	.svg * {
+		fill: $color_silver_chalice;
+	}
+	> .field {
+		margin: 0;
+		@include align-self(center);
+	}
+	.sortable {
+		position: absolute; top: 0; left: 0; height: 100%; background-color: lighten($color_silver_chalice, 30%); cursor: move;
+		@include rem(width, 32px);
+		@include rem(padding, 0 8px);
+	
+		.svg {
+			position: absolute; top: 50%;
+			@include rem(margin-top, -8px);
+		}
+	}	
+	.photo {
+		@include rem(margin, 0 32px);
+		@include rem(width, 320px);
+		@include align-self(center);
+	
+		img {
+			width: 100%; border: 16px solid #fff;
+			@include rem(border-width, 16px);
+			@include transition(all $animation_speed ease-in-out);
+		}
+	}
+	.meta {
+		@include flex-grow(2);
+		@include rem(margin, 0 32px);
+	
+		.field:last-child {
+			margin: 0;
+		}
+	}
+	.buttons {
+		@include align-self(flex-end);
+		
+		.button {
+			margin: 0;
+		}
+	}
+}
+
+
+// Attachment Entries
+// =================================================================
+.attachment-wrapper {
+	position: relative; background-color: lighten($color_silver_chalice, 35%); overflow: hidden;
+	@include display(flex);
+	@include justify-content(space-between);
+	@include rem(padding, 20px 20px 20px 52px);
+	@include rem(margin, 16px 0);
+	@include rem(border-radius, $corners);
+
+	&.inverted {
+		background-color: #fff;
+	}
+
+	.svg {
+		position: relative;
+		@include rem(top, -2px);
+		@include rem(width, 16px);
+		@include rem(height, 16px);
+	}
+	.svg.knockout * {
+		fill: $color_silver_chalice;
+	}
+	> .field {
+		margin: 0;
+		@include align-self(center);
+	}
+	.sortable {
+		position: absolute; top: 0; left: 0; height: 100%; background-color: lighten($color_silver_chalice, 30%); cursor: move;
+		@include rem(width, 32px);
+		@include rem(padding, 0 8px);
+	
+		.svg {
+			position: absolute; top: 50%;
+			@include rem(margin-top, -8px);
+		}
+	}
+	.type {
+		@include align-self(center);
+
+		.svg {
+			@include rem(width, 128px);
+			@include rem(height, 128px);
+		}
+	
+	}
+	.meta {
+		@include rem(margin, 0 32px);
+	
+		.field:last-child {
+			margin: 0;
+		}
+	}
+	.buttons {
+		@include align-self(flex-end);
+		
+		.button {
+			margin: 0;
+		}
+	}
+}

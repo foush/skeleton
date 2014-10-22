@@ -1,0 +1,77 @@
+//==================================================================
+// Typography Partial
+// Styles for overall typography and misc. content components.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+
+// Custom Fonts
+// =================================================================
+// @include declare-font-face('Font Name', 'font-location-relative-to-fonts-folder');
+
+
+// Global
+// =================================================================
+html, body { color: $base_font_color; font: 400 #{$base_font_size}/#{$base_line_height} $base_font_family; }
+hr {
+	height: 1px; background-color: #ddd; border: 0;
+	@include rem(margin, 20px 0);
+}
+
+
+// Headings
+// =================================================================
+h1, h2, h3, h4, h5, h6 {
+	color: $color_orient;
+}
+h1 {
+	margin: 0;
+	@include rem(font-size, 28px);
+}
+
+
+// Paragraphs
+// =================================================================
+p {}
+strong {}
+
+
+// Links
+// =================================================================
+a {
+	color: $color_orient; text-decoration: none;
+	@include transition(all $animation_speed ease-in-out);
+
+	&:hover {
+		color: $color_cerulean;
+	}
+}
+
+
+// Lists
+// =================================================================
+ul, ol, dl {}
+
+
+	// Unordered
+	//--------------------------------------------------------------
+	ul {}
+	ul li {}
+
+
+	// Ordered
+	//--------------------------------------------------------------
+	ol {}
+	ol li {}
+
+
+	// Definition
+	//--------------------------------------------------------------
+	dl {}
+	dt {}
+	dd {}
+
+
+// Blockquotes
+// =================================================================
+blockquote {}

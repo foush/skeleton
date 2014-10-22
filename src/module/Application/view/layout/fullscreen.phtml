@@ -1,0 +1,45 @@
+<?php echo $this->doctype(); ?>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en" data-layout="fullscreen" data-ng-app="votr"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en" data-layout="fullscreen" data-ng-app="votr"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en" data-layout="fullscreen" data-ng-app="votr"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" data-layout="fullscreen" data-ng-app="votr"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="cleartype" content="on">
+	<?php echo $this->headTitle('ABT Votr ')->setSeparator(' - ')->setAutoEscape(false) ?>
+    <?php echo $this->headMeta()
+                    ->appendName('viewport', 'width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no')
+                    ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+    <?php echo $this->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/touch-icon-iphone.png'))
+                    ->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/touch-icon-ipad.png', 'sizes' => '72x72'))
+                    ->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/touch-icon-iphone-retina.png', 'sizes' => '114x114'))
+                    ->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/touch-icon-ipad-retina.png', 'sizes' => '144x144'))
+                    ->headLink(array('rel' => 'shortcut icon', 'href' => $this->basePath() . '/dist/img/favicon.png'))
+                    ->prependStylesheet($this->basePath() . '/dist/css/print.css', 'print')
+                    ->prependStylesheet($this->basePath() . '/dist/css/style.css')
+                    ->prependStylesheet($this->basePath() . 'http://fonts.googleapis.com/css?family=Open+Sans:400,600') ?>
+
+    <script src="/dist/js/vendors/modernizr/modernizr.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/dist/js/vendors/jquery/jquery.min.js"><\/script>')</script>
+</head>
+    <body data-ng-controller="BodyCtrl" data-ng-cloak>
+        <!--[if lt IE 10]><div class="chromeframe">Your browser is ancient! <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</div><![endif]-->
+        
+        <!-- if there's an error, use the following
+        <div class="alert-box error animated fadeInDown">Hold up! Either your email address or password isn't right. Check it again.</div>
+        -->
+        <?php echo $this->render('partials/alerts'); ?>
+        <?php echo $this->content; ?>
+
+        <div class="footer-container animated fadeInUp">
+            <footer class="wrapper group">
+	            <p>&copy; <?php echo date('Y'); ?> AtlanticBT <?php echo $this->translate('All Rights Reserved.') ?></p>
+            </footer>
+        </div>
+        <?php echo $this->inlineScript()            
+            ->prependFile('/dist/js/app/controllers/BodyCtrl.js')
+            ->prependFile('/dist/js/scripts.min.js'); ?>
+    </body>
+</html>

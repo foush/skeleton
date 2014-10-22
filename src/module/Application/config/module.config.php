@@ -1,0 +1,345 @@
+<?php
+/**
+ * Zend Framework (http://framework.zend.com/)
+ *
+ * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
+ * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ */
+use Application\Util\Param;
+
+return array(
+    'router' => array(
+        'routes' => array(
+            'api' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route'    => '/api/v1',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Api\Index',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'report' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/user',
+                        ),
+                        'child_routes' => array(
+                            'short_report_api' => array(
+                                'type' => 'literal',
+                                'options' => array(
+                                    'route' => '/user',
+                                    'defaults' => array(
+                                        'controller' => 'Application\Controller\Api\User',
+                                    ),
+                                ),
+                                'child_routes' => array(
+                                    'get' => array(
+                                        'type' => 'method',
+                                        'options' => array(
+                                            'verb' => 'get',
+                                            'defaults' => array(
+                                                'action' => 'index',
+                                            ),
+                                        ),
+                                        'child_routes' => array(
+                                            'operation' => array(
+                                                'type' => 'segment',
+                                                'options' => array(
+                                                    'route' => '[/:user[/:action]]',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    'post' => array(
+                                        'type' => 'method',
+                                        'options' => array(
+                                            'verb' => 'post',
+                                            'defaults' => array(
+                                                'action' => 'update',
+                                            ),
+                                        ),
+                                        'child_routes' => array(
+                                            'operation' => array(
+                                                'type' => 'segment',
+                                                'options' => array(
+                                                    'route' => '[/:user[/:action]]',
+                                                ),
+                                            ),
+                                        ),
+
+                                    ),
+
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'home' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+
+            // The following is a route to simplify getting started creating
+            // new controllers and actions without needing to create a new
+            // module. Simply drop new controllers in, and you can access them
+            // using the path /application/:controller/:action
+            'application' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/application',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:controller[/:action]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
+        ),
+    ),
+    'service_manager' => array(
+        'abstract_factories' => array(
+            'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
+            'Zend\Log\LoggerAbstractServiceFactory',
+        ),
+        'aliases' => array(
+            'translator' => 'MvcTranslator',
+            'em' => 'Doctrine\ORM\EntityManager',
+            'Zend\Authentication\AuthenticationService' => 'auth_service',
+            'authorize' => 'BjyAuthorize\Service\Authorize',
+        ),
+        'factories' => array(
+
+            'Navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'authentication_event_factory' => 'Application\Factory\AuthenticationEventServiceFactory',
+
+            'email_renderer' => function($sm) {
+                $rendererFactory = $sm->get('email_renderer_factory');
+                return $rendererFactory->createService($sm);
+            },
+            'votr_session' => function($sm) {//TODO: Remove this once functionality is ported
+                    return new \Zend\Session\Container('votr');
+             },
+            'aws_config' => function(\Zend\ServiceManager\ServiceManager $sm) {
+                    $config = $sm->get('config');
+                    if (!isset($config['aws'])) {
+                        throw new \RuntimeException('AWS configuration not detected.');
+                    }
+                    return Param::create($config['aws']);
+                },
+            'aws_service_config' => function(\Zend\ServiceManager\ServiceManager $sm) {
+	            $config = $sm->get('config');
+	            if (!isset($config['aws_services'])) {
+		            throw new \RuntimeException('AWS Services configuration not detected.');
+	            }
+	            return Param::create($config['aws_services']);
+            },
+            'ses_config' => function(\Zend\ServiceManager\ServiceManager $sm) {
+                    $config = $sm->get('aws_service_config');
+	                return $config->in('ses');
+                },
+            'ses' => function(\Zend\ServiceManager\ServiceManager $sm) {
+                    return \Aws\Ses\SesClient::factory($sm->get('ses_config')->get());
+                },
+            's3_config' => function(\Zend\ServiceManager\ServiceManager $sm) {
+                    $aws = $sm->get('aws_service_config');
+	                return $aws->in('s3');
+                },
+            's3_key_prefix' => function(\Zend\ServiceManager\ServiceManager $sm) {
+                return $sm->get('s3_config')->get('environment_prefix', 'default') . '/';
+            },
+            's3' => function(\Zend\ServiceManager\ServiceManager $sm) {
+                    return \Aws\S3\S3Client::factory($sm->get('s3_config')->get());
+                },
+
+        ),
+        'invokables' => array(
+            'votr_session_manager' => 'Application\Factory\Session\SessionFactory',
+            'email_renderer_factory' => 'Application\Factory\Email\RendererFactory',
+            'auth_service' => 'Zend\Authentication\AuthenticationService',
+	        'session_setup' => 'Application\Service\Session',
+            'entity_to_form' => 'Application\Service\EntityToForm',
+            'flattener' => 'Application\Service\Flattener',
+            // searh result services
+            'result' => 'Application\Service\Search\Result',
+            'offices' => 'Application\Service\Search\Base\DQL\Office',
+            'office' => 'Application\Service\Update\Office',
+
+            'users' => 'Application\Service\Search\Base\DQL\User',
+            'user' => 'Application\Service\Update\User',
+
+            'roles' => 'Application\Service\Search\Base\DQL\Role',
+            'user_update_factory' => 'Application\Factory\Update\User',
+            'email' => 'Application\Service\Email',
+            'email_attachment' => 'Application\Service\Email\Attachment',
+
+        ),
+    ),
+    'translator' => array(
+        'locale' => 'en_US',
+        'translation_file_patterns' => array(
+            array(
+                'type'     => 'gettext',
+                'base_dir' => __DIR__ . '/../language',
+                'pattern'  => '%s.mo',
+            ),
+        ),
+    ),
+    'controllers' => array(
+        'invokables' => array(
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Api\Index' => 'Application\Controller\Api\IndexController',
+        ),
+    ),
+
+    'controller_plugins' => array(
+        'invokables' => array(
+            'searchResult' => 'Application\Controller\Plugin\SearchResult',
+            'updateResult' => 'Application\Controller\Plugin\UpdateResult',
+            'e2f'          => 'Application\Controller\Plugin\EntityToForm',
+            'session'      => 'Application\View\Helper\VotrSession',
+            'isAllowedClaim' => 'Application\View\Helper\Acl\IsAllowedClaim',
+            'isAllowedClaimActivity' => 'Application\View\Helper\Acl\IsAllowedClaimActivity',
+            'entitiesList' => 'Application\Controller\Plugin\EntitiesList',
+        )
+    ),
+    'view_helpers' => array(
+        'invokables' => array(
+            'e2f'            => 'Application\View\Helper\EntityToForm',
+            'ngInit'         => 'Application\View\Helper\NgInit',
+            'votrForm'   => 'Application\View\Helper\VotrForm',
+            'session'        => 'Application\View\Helper\VotrSession',
+            'attributeValue' => 'Application\View\Helper\AttributeValueSanitizer',
+            'attribute' => 'Application\View\Helper\Attribute',
+            'request'        => 'Application\View\Helper\Request',
+            'money' => 'Application\View\Helper\Money',
+            'ordinal' => 'Application\View\Helper\Ordinal',
+            'address' => 'Application\View\Helper\Address',
+        ),
+        'factories' => array(
+            'flashMessages' => function($sm) {
+                    $flashmessenger = $sm->getServiceLocator()
+                        ->get('ControllerPluginManager')
+                        ->get('flashmessenger');
+
+                    $messages = new \Application\View\Helper\FlashMessages();
+                    $messages->setFlashMessenger($flashmessenger);
+
+                    return $messages;
+                },
+            'mainMenu' => function($sm) {
+	            $locator = $sm->getServiceLocator();
+	            $nav = $sm->get('Zend\View\Helper\Navigation')->menu('navigation');
+	            $nav->setUlClass('');
+	            $nav->escapeLabels(false);
+	            $nav->setMaxDepth(1);
+	            //$nav->setPartial('partials/primary-nav');
+	            $acl = $locator->get('BjyAuthorize\Service\Authorize')->getAcl();
+	            $role = $locator->get('BjyAuthorize\Service\Authorize')->getIdentity();
+	            $nav->setAcl($acl);
+	            $nav->setRole($role);
+	            $nav->setUseAcl();
+	            return $nav->setUlClass('nav')->setTranslatorTextDomain(__NAMESPACE__);
+            }
+        ),
+    ),
+    'view_manager' => array(
+        'display_not_found_reason' => true,
+        'display_exceptions'       => true,
+        'doctype'                  => 'HTML5',
+        'not_found_template'       => 'error/404',
+        'exception_template'       => 'error/index',
+        'template_map' => array(
+            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
+            'layout/fullscreen'       => __DIR__ . '/../view/layout/fullscreen.phtml',
+            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'error/404'               => __DIR__ . '/../view/error/404.phtml',
+            'error/403'               => __DIR__ . '/../view/error/403.phtml',
+            'error/index'             => __DIR__ . '/../view/error/index.phtml',
+        ),
+        'template_path_stack' => array(
+            __DIR__ . '/../view',
+            'zfcuser' => __DIR__ . '/../view',
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy',
+        ),
+
+    ),
+    // Placeholder for console routes
+    'console' => array(
+        'router' => array(
+            'routes' => array(
+            ),
+        ),
+    ),
+
+   'authentication_event' => array(
+       'max_attempts_count' => 3,
+       'max_attempts_message' =>
+           "This user account has been deactivated. Please contact the site administrator to have the account reset. ",
+    ),
+
+    'zfcuser' => array(
+        // telling ZfcUser to use our own class
+        //'user_entity_class'       => 'SamUser\Entity\User',
+        'user_entity_class'       => 'Application\Entity\Base\User',
+        // telling ZfcUserDoctrineORM to skip the entities it defines
+        'enable_default_entities' => false,
+        // Go home after logging in, use a closure or factory method if more routing is needed
+        'login_redirect_route' => 'home',
+    ),
+
+    'doctrine' => array(
+        'driver' => array(
+            'votr_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(
+                    //'module/Application/src/Application/Entity/Base/'
+                    'module/Application/src/Application/Entity/',
+                    //'paths' => __DIR__ . '/../src/SamUser/Entity',
+                ),
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    'Application\Entity' => 'votr_driver',
+                    //'SamUser\Entity' => 'zfcuser_entity',
+                ),
+            ),
+        ),
+    ),
+
+    'session' => array(
+            'remember_me_seconds' => 2592000,
+            'use_cookies'         => true,
+            'cookie_httponly'     => true,
+        ),
+
+    );

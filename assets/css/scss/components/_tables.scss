@@ -1,0 +1,138 @@
+//==================================================================
+// Tables Partial
+// Styles for tables and table componenets.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Variables
+// =================================================================
+
+
+// Tables
+// =================================================================
+table {
+
+	// Global
+	// -------------------------------------------------------------
+	tr {}
+	th, td {}
+	th {}
+
+
+	// Header Cells
+	// -------------------------------------------------------------
+	thead {}
+	thead th {}
+
+
+	// Body Cells
+	// -------------------------------------------------------------
+	tbody tr:nth-child(even) {}
+	tbody th {
+		text-align: left;
+	}
+		
+		// Align Right
+		tbody td.align-right {
+			text-align: right;
+		}
+
+		// LA File No.
+		tbody td.file-number {
+			white-space: nowrap;
+		}
+
+		// Currency
+		tbody td.currency {
+			position: relative; text-align: right;
+		}
+		tbody td.current:before {
+			content: "$";
+		}
+
+		// Rate
+		tbody td.rate {
+			text-align: center;
+		}
+		tbody td.rate:after {}
+
+		// Hover
+		tbody tr:hover {}
+		tbody tr:nth-child(even):hover {}
+
+
+	// Footer Cells
+	// -------------------------------------------------------------
+	tfoot {}
+	tfoot td {}
+
+		// Hover
+		tfoot tr:hover {}
+		tfoot tr:nth-child(even):hover {}
+
+
+	// Matrix Table
+	// -------------------------------------------------------------
+	&.matrix {}
+	&.matrix th {
+		@include rem(padding, 4px 0);
+	}
+	&.matrix td {
+		@include rem(padding, 4px);
+	}
+	&.matrix input {
+		width: 126px !important;
+	}
+	&.matrix button {
+		margin: 0;
+	}
+	&.matrix .removeable td {
+		position: relative;
+	}
+	&.matrix .remove-row {
+		position: absolute; margin: 0;
+		@include rem(top, 4px);
+		@include rem(right, -110px);
+	}
+
+
+	// Report Table
+	// -------------------------------------------------------------
+	&.report {
+        border: 1px solid black;
+        width: 100%;
+    }
+	&.report th {
+		background-color: $color_orient; color: #fff;
+	}
+    &.report td, &.report th {
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+    }
+    &.report th.table-head-main {
+        /*
+        background-color: #005685;
+        color: white;
+        */
+        background-color: #dddddd;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    &.report td:first-of-type,
+    &.report th:first-of-type,
+    &.report *.left {
+        text-align: left !important;
+    }
+    &.report *.centered {
+        text-align: center !important;
+    }
+    &.report td.highlight {
+    	background-color: lighten($color_silver_chalice, 25%);
+    }
+
+}
+table .button {
+	margin: 0;
+}
+

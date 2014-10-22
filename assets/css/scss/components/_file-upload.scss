@@ -1,0 +1,66 @@
+//==================================================================
+// File Upload Partial
+// Styles for file upload component.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// File Upload
+// =================================================================
+.file-upload {
+	
+	// Global
+	//--------------------------------------------------------------
+	.svg {
+		@include rem(width, 16px);
+		@include rem(height, 16px);
+	}
+	.svg * {
+		fill: $color_silver_chalice;
+	}
+	.success * {
+		fill: $color_emerald;
+	}
+	.cancel *,
+	.error * {
+		fill: $color_red_orange;
+	}
+
+	// Drop Zone
+	//--------------------------------------------------------------
+	.drop-zone {
+		position: relative; background-color: lighten($color_silver_chalice, 35%); border: 2px dashed $color_silver_chalice; color: $color_silver_chalice; text-align: center;
+		@include rem(font-size, 18px);
+		@include rem(border-width, 2px);
+
+		div {
+			@include rem(padding, 80px);
+			@include transition(background-color $animation_speed ease-in-out);
+		}
+		strong {
+			display: block;
+			@include rem(font-size, 28px);
+		}
+		span {
+			color: $color_orient;
+		}
+		input[type="file"] {
+			position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; padding: 0 !important; opacity: 0; cursor: pointer;
+		}
+	
+		// File Over
+		.nv-file-over {
+			background-color: lighten($color_silver_chalice, 25%);
+		}
+	}
+
+	// Drop Zone Load
+	//--------------------------------------------------------------
+	.drop-zone-load {
+		@include rem(line-height, 24px);
+
+		img {
+			display: inline-block; vertical-align: bottom;
+		}
+	}
+
+}

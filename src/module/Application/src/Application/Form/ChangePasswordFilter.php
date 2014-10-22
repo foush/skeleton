@@ -1,0 +1,75 @@
+<?php
+
+namespace Application\Form;
+
+use Zend\InputFilter\InputFilter;
+use ZfcUser\Options\AuthenticationOptionsInterface;
+
+class ChangePasswordFilter extends InputFilter
+{
+    public function __construct(AuthenticationOptionsInterface $options)
+    {
+
+        /*
+        $identityParams = array(
+            'name'       => 'token',
+            'required'   => true,
+            'validators' => array()
+        );
+
+        $identityFields = $options->getAuthIdentityFields();
+
+        if ($identityFields == array('email')) {
+            $validators = array('name' => 'EmailAddress');
+            array_push($identityParams['validators'], $validators);
+        }
+
+        $this->add($identityParams);
+        */
+
+        $this->add(array(
+            'name'       => 'token',
+            'required'   => true,
+            'validators' => array(
+                array(
+                    'name'    => 'StringLength',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+            'filters'   => array(
+                array('name' => 'StringTrim'),
+            ),
+        ));
+
+        $this->add(array(
+            'name'       => 'newCredential',
+            'required'   => true,
+            'validators' => array(
+                array(
+                    'name'    => '\Application\Validator\PasswordStrength',
+                ),
+            ),
+            'filters'   => array(
+                array('name' => 'StringTrim'),
+            ),
+        ));
+
+        $this->add(array(
+            'name'       => 'newCredentialVerify',
+            'required'   => true,
+            'validators' => array(
+                array(
+                    'name' => '\Application\Validator\PasswordIdentical',
+                    'options' => array(
+                        'token' => 'newCredential'
+                    )
+                ),
+            ),
+            'filters'   => array(
+                array('name' => 'StringTrim'),
+            ),
+        ));
+    }
+}

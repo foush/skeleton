@@ -1,0 +1,97 @@
+//==================================================================
+// Header Partial
+// Styles for header layout.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Header
+// =================================================================
+.header-container {
+	position: relative; background: url('../img/bg_login.jpg') no-repeat 50% 50%; background-size: cover;
+
+	&:before {
+		content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba($color_orient, .85);
+	}
+
+	.wrapper {
+		position: relative;
+	}
+
+	// Logo
+	//--------------------------------------------------------------
+	.site-logo {
+		float: left;
+		@include rem(margin, 20px 0 30px);
+	
+		.svg * {
+			fill: #fff;
+		}
+	}
+
+	// Primary Nav
+	//--------------------------------------------------------------
+	.primary {
+		clear: both;
+		// Additional styles under /components
+	}
+
+	// Utility Nav
+	//--------------------------------------------------------------
+	.utility {
+		position: absolute; right: 0; color: #fff;
+		@include rem(top, 40px);
+	
+		// Office
+		.office {
+			position: relative; float: left;
+			@include rem(margin-right, 30px);
+			@include rem(line-height, 40px);
+		}
+		.office .office-toggle {
+			margin: 0; vertical-align: text-top;
+			@include rem(padding, 2px 8px);
+		}
+		.office .office-toggle .svg {
+			position: relative;
+			@include rem(top, -1px);
+			@include rem(width, 8px);
+			@include rem(height, 8px);
+		}
+		.office .office-toggle .svg * {
+			fill: #fff;
+		}
+		.office .office-list {
+			position: absolute; right: 0; width: auto; padding: 0; margin: 0; background-color: #fff; box-shadow: 0 1px 3px rgba(#000, .25); color: $color_orient; list-style: none; z-index: 100;
+			@include rem(padding, 10px);
+			@include rem(border-radius, $corners);
+		}
+		.office .office-list li {
+			line-height: 1.5;
+			@include rem(margin-top, 8px);
+		}
+		.office .office-list li:first-child {
+			margin: 0;
+		}
+		.office .office-list li a {
+			display: block; white-space: nowrap; cursor: pointer;
+			@include rem(padding, 4px 8px);
+			@include rem(border-radius, $corners);
+		}
+		.office .office-list li.selected a {
+			background-color: $color_orient; color: #fff;
+		}
+
+		// User
+		.user {
+			float: left;
+			@include rem(margin-right, 30px);
+			@include rem(line-height, 40px);
+		}
+
+		// Logout
+		.logout {
+			float: left;
+		}
+	}
+
+}

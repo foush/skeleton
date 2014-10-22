@@ -1,0 +1,73 @@
+//==================================================================
+// Login Page Partial
+// Styles for the login page.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Login
+// =================================================================
+[data-layout="fullscreen"] {
+    height: 100%; background: url('../img/bg_login.jpg') no-repeat 50% 50%; background-size: cover;
+
+    body {
+        height: 100%; background-color: rgba($color_orient, .85);
+        @include display(flex);
+        @include align-content(center);
+
+        // Alerts
+        //--------------------------------------------------------------
+        .chromeframe, .alert-box {
+            position: fixed;
+        }
+
+        // Login Section
+        //--------------------------------------------------------------
+        .login {
+            margin: 0 auto; text-align: center;
+            @include rem(width, 400px);
+            @include align-self(center);
+        }
+        .login .svg {
+            @include rem(width, 150px);
+        }
+        .login .svg * {
+            fill: #fff;
+        }
+        .login h1 {
+            color: #fff;
+            @include rem(margin, 20px 0);
+            @include rem(font-size, 24px);
+        }
+        .login h1 + p {
+            color: rgba(#fff, .8);
+            @include rem(margin, -10px 0 20px);
+        }
+        .login input[type="password"] {
+            display: block;
+        }
+        .login a {
+            display: inline-block; color: rgba(#fff, .8);
+            @include rem(padding, 10px);
+        }
+        .login a:hover {
+            color: #fff;
+        }
+        .login input[type="submit"] {
+            width: 100%; background-color: darken($color_orient, 10%); color: rgba(#fff, .8);
+        }
+        .login input[type="submit"]:hover {
+            background-color: darken($color_orient, 15%); color: #fff;
+        }
+        .login .error-message {
+            background-color: $color_red_orange; color: #fff;
+            @include rem(padding, 10px);
+            @include rem(margin, 2px 0);
+        }
+
+        // Footer
+        //--------------------------------------------------------------
+        .footer-container {
+            left: 0; background: none; border: 0; color: rgba(#fff, .8);
+        }
+    }
+}

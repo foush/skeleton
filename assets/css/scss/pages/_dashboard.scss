@@ -1,0 +1,19 @@
+//==================================================================
+// Dashboard Partial
+// Styles for the dashboard.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Dashboard
+// =================================================================
+.claims-due,
+.claims-added {
+	@include span-columns(6);
+	overflow: hidden;
+
+	h2 {
+		font-weight: 400; line-height: 1;
+		@include rem(margin-bottom, 32px);
+	}
+
+}
