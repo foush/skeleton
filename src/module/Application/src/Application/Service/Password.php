@@ -1,7 +1,7 @@
 <?php
 namespace Application\Service;
 
-use Application\Util\Param;
+use FzyCommon\Util\Params;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerAwareInterface;

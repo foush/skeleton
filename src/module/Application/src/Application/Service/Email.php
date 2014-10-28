@@ -1,7 +1,7 @@
 <?php
 namespace Application\Service;
 
-use Application\Util\Param;
+use FzyCommon\Util\Params;
 
 /**
  * Service used to send an SES email message
@@ -21,10 +21,10 @@ class Email extends Base
      *      'message': the message body
      *      'readReceipt': whether or not to send a read receipt header
      *
-     * @param  Param $params
+     * @param  Params $params
      * @return bool
      */
-    public function send(Param $params)
+    public function send(Params $params)
     {
         $transport = $this->getServiceLocator()->get('SlmMail\Mail\Transport\SesTransport');
         $readReceipt = $params->get('readReceipt');

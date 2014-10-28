@@ -1,7 +1,7 @@
 <?php
 namespace Application\Service\Email;
 
-use Application\Util\Param;
+use FzyCommon\Util\Params;
 use Application\Service\Email;
 
 /**
@@ -28,10 +28,10 @@ class Attachment extends Email
      *      'message': the message body
      *      'readReceipt': whether or not to send a read receipt header
      *
-     * @param  Param $params
+     * @param  Params $params
      * @return bool
      */
-    public function send(Param $params)
+    public function send(Params $params)
     {
         if (empty($this->attachmentKey)) {
             throw new \RuntimeException('Attachment key must be specified');

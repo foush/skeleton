@@ -8,9 +8,10 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
-        'BjyAuthorize',
 	    'Aws',
 	    'SlmMail',
+	    'FzyCommon',
+	    'FzyForm',
         'Application',
     ),
 

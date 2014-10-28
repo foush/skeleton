@@ -7,24 +7,16 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application;
+namespace FzyAuth;
 
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
-use Zend\EventManager\StaticEventManager;
-use Zend\Authentication\Result as AuthenticationResult;
-use Application\Entity\Base\UserInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Session\Config\SessionConfig;
-use Zend\Session\Container;
-use Zend\Session\SessionManager;
-use Zend\View\Model\JsonModel;
+use Zend\EventManager\EventInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 
 /**
  * Class Module
  * @package Application
  */
-class Module
+class Module implements BootstrapListenerInterface
 {
     /**
      * @return mixed
@@ -47,4 +39,18 @@ class Module
             ),
         );
     }
+
+	/**
+	 * Listen to the bootstrap event
+	 *
+	 * @param EventInterface $e
+	 *
+	 * @return array
+	 */
+	public function onBootstrap( EventInterface $e ) {
+		/* @var $e \Zend\Mvc\MvcEvent */
+		/* @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
+		$sm = $e->getApplication()->getServiceManager();
+		$sm->get('route_listener')->latch($e);
+	}
 }

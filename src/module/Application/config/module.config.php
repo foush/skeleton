@@ -131,21 +131,15 @@ return array(
         'aliases' => array(
             'translator' => 'MvcTranslator',
             'em' => 'Doctrine\ORM\EntityManager',
-            'Zend\Authentication\AuthenticationService' => 'auth_service',
-            'authorize' => 'BjyAuthorize\Service\Authorize',
         ),
         'factories' => array(
 
             'Navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
-            'authentication_event_factory' => 'Application\Factory\AuthenticationEventServiceFactory',
 
             'email_renderer' => function($sm) {
                 $rendererFactory = $sm->get('email_renderer_factory');
                 return $rendererFactory->createService($sm);
             },
-            'votr_session' => function($sm) {//TODO: Remove this once functionality is ported
-                    return new \Zend\Session\Container('votr');
-             },
             'aws_config' => function(\Zend\ServiceManager\ServiceManager $sm) {
                     $config = $sm->get('config');
                     if (!isset($config['aws'])) {
@@ -180,21 +174,12 @@ return array(
 
         ),
         'invokables' => array(
-            'votr_session_manager' => 'Application\Factory\Session\SessionFactory',
-            'email_renderer_factory' => 'Application\Factory\Email\RendererFactory',
-            'auth_service' => 'Zend\Authentication\AuthenticationService',
-	        'session_setup' => 'Application\Service\Session',
-            'entity_to_form' => 'Application\Service\EntityToForm',
-            'flattener' => 'Application\Service\Flattener',
-            // searh result services
+            // search result services
             'result' => 'Application\Service\Search\Result',
-            'offices' => 'Application\Service\Search\Base\DQL\Office',
-            'office' => 'Application\Service\Update\Office',
 
             'users' => 'Application\Service\Search\Base\DQL\User',
             'user' => 'Application\Service\Update\User',
 
-            'roles' => 'Application\Service\Search\Base\DQL\Role',
             'user_update_factory' => 'Application\Factory\Update\User',
             'email' => 'Application\Service\Email',
             'email_attachment' => 'Application\Service\Email\Attachment',
@@ -220,39 +205,14 @@ return array(
 
     'controller_plugins' => array(
         'invokables' => array(
-            'searchResult' => 'Application\Controller\Plugin\SearchResult',
-            'updateResult' => 'Application\Controller\Plugin\UpdateResult',
-            'e2f'          => 'Application\Controller\Plugin\EntityToForm',
-            'session'      => 'Application\View\Helper\VotrSession',
-            'isAllowedClaim' => 'Application\View\Helper\Acl\IsAllowedClaim',
-            'isAllowedClaimActivity' => 'Application\View\Helper\Acl\IsAllowedClaimActivity',
-            'entitiesList' => 'Application\Controller\Plugin\EntitiesList',
         )
     ),
     'view_helpers' => array(
         'invokables' => array(
-            'e2f'            => 'Application\View\Helper\EntityToForm',
-            'ngInit'         => 'Application\View\Helper\NgInit',
-            'votrForm'   => 'Application\View\Helper\VotrForm',
-            'session'        => 'Application\View\Helper\VotrSession',
-            'attributeValue' => 'Application\View\Helper\AttributeValueSanitizer',
-            'attribute' => 'Application\View\Helper\Attribute',
             'request'        => 'Application\View\Helper\Request',
-            'money' => 'Application\View\Helper\Money',
-            'ordinal' => 'Application\View\Helper\Ordinal',
-            'address' => 'Application\View\Helper\Address',
         ),
         'factories' => array(
-            'flashMessages' => function($sm) {
-                    $flashmessenger = $sm->getServiceLocator()
-                        ->get('ControllerPluginManager')
-                        ->get('flashmessenger');
 
-                    $messages = new \Application\View\Helper\FlashMessages();
-                    $messages->setFlashMessenger($flashmessenger);
-
-                    return $messages;
-                },
             'mainMenu' => function($sm) {
 	            $locator = $sm->getServiceLocator();
 	            $nav = $sm->get('Zend\View\Helper\Navigation')->menu('navigation');
@@ -260,11 +220,11 @@ return array(
 	            $nav->escapeLabels(false);
 	            $nav->setMaxDepth(1);
 	            //$nav->setPartial('partials/primary-nav');
-	            $acl = $locator->get('BjyAuthorize\Service\Authorize')->getAcl();
-	            $role = $locator->get('BjyAuthorize\Service\Authorize')->getIdentity();
-	            $nav->setAcl($acl);
-	            $nav->setRole($role);
-	            $nav->setUseAcl();
+//	            $acl = $locator->get('BjyAuthorize\Service\Authorize')->getAcl();
+//	            $role = $locator->get('BjyAuthorize\Service\Authorize')->getIdentity();
+//	            $nav->setAcl($acl);
+//	            $nav->setRole($role);
+//	            $nav->setUseAcl();
 	            return $nav->setUlClass('nav')->setTranslatorTextDomain(__NAMESPACE__);
             }
         ),
@@ -300,12 +260,6 @@ return array(
         ),
     ),
 
-   'authentication_event' => array(
-       'max_attempts_count' => 3,
-       'max_attempts_message' =>
-           "This user account has been deactivated. Please contact the site administrator to have the account reset. ",
-    ),
-
     'zfcuser' => array(
         // telling ZfcUser to use our own class
         //'user_entity_class'       => 'SamUser\Entity\User',
@@ -336,10 +290,4 @@ return array(
         ),
     ),
 
-    'session' => array(
-            'remember_me_seconds' => 2592000,
-            'use_cookies'         => true,
-            'cookie_httponly'     => true,
-        ),
-
-    );
+);

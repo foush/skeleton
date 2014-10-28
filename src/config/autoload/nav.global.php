@@ -11,6 +11,6 @@ return array(
 //                'privilege' => '',
 //                'pages' => array(),
             ),
-
+        ),
     ),
 );

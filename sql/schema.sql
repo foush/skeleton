@@ -6,13 +6,12 @@ CREATE TABLE `user` (
   `password_token` varchar(128) DEFAULT NULL,
   `first_name` varchar(128) DEFAULT NULL,
   `last_name` varchar(128) DEFAULT NULL,
-  `role_id` int(11) NOT NULL,
+  `role` varchar(8) not null default 'guest',
   `state` char(8) DEFAULT 'active',
   `created_ts` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_ts` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `email` (`email`),
-  KEY `username` (`username`),
-  KEY `role_id` (`role_id`),
-  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
+  KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

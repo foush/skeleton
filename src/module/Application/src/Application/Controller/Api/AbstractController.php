@@ -2,7 +2,7 @@
 
 namespace Application\Controller\Api;
 
-use Application\Util\Param;
+use FzyCommon\Util\Params;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 
@@ -55,7 +55,7 @@ abstract class AbstractController extends AbstractActionController
         /* @var $searchService \Application\Service\Search\Base */
         $searchService = $this->getSearchService();
 
-        return new JsonModel($this->searchResult($searchService->search(Param::create($this->params(), $this->getRequest()))));
+        return new JsonModel($this->searchResult($searchService->search(Params::create($this->params(), $this->getRequest()))));
     }
 
     /**
@@ -65,8 +65,8 @@ abstract class AbstractController extends AbstractActionController
     {
         /* @var $updater \Application\Service\Update */
         $updater = $this->getServiceLocator()->get($this->getUpdateServiceKey());
-        /* @var $params \Application\Util\Param */
-        $params = Param::create($this->params(), $this->getRequest());
+        /* @var $params \FzyCommon\Util\Params */
+        $params = Params::create($this->params(), $this->getRequest());
         $updater->setMainEntityFromParam($params);
         $updater->update($params);
 

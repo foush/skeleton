@@ -12,7 +12,7 @@ $settings = array(
      * Please specify the DI alias for the configured Zend\Db\Adapter\Adapter
      * instance that ZfcUser should use.
      */
-    //'zend_db_adapter' => 'Zend\Db\Adapter\Adapter',
+//    'zend_db_adapter' => 'Zend\Db\Adapter\Adapter',
 
     /**
      * User Model Entity Class
@@ -21,7 +21,7 @@ $settings = array(
      * instead of the default one provided. Default is ZfcUser\Entity\User.
      * The entity class should implement ZfcUser\Entity\UserInterface
      */
-    //'user_entity_class' => 'ZfcUser\Entity\User',
+    'user_entity_class' => 'Auth\Entity\Base\User',
 
     /**
      * Enable registration
@@ -71,7 +71,7 @@ $settings = array(
      * Default value: array containing 'email'
      * Accepted values: array containing one or more of: email, username
      */
-     'auth_identity_fields' => array( 'email', 'username' ),
+    'auth_identity_fields' => array( 'email', 'username' ),
 
     /**
      * Login form timeout
@@ -101,7 +101,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    'login_after_registration' => false,
+    'login_after_registration' => true,
 
     /**
      * Registration Form Captcha
@@ -143,7 +143,7 @@ $settings = array(
      * Accepted values: string path to a view script
 	 */
     //'user_login_widget_view_template' => 'zfc-user/user/login.phtml',
-    'user_login_widget_view_template' => 'layout/fullsreen.phtml',
+
     /**
      * Login Redirect Route
      *
@@ -201,7 +201,7 @@ $settings = array(
      * What state user should have upon registration?
      * Allowed value type: integer
      */
-    'default_user_state' => \Application\Entity\Base\UserInterface::STATE_ACTIVE,
+    'default_user_state' => 'active',
     
     /**
      * States which are allowing user to login
@@ -210,12 +210,14 @@ $settings = array(
      * Include null if you want user's with no state to login as well.
      * Allowed value types: null and integer
      */
-    'allowed_login_states' => array( \Application\Entity\Base\UserInterface::STATE_ACTIVE ),
+    'allowed_login_states' => array( 'active' ),
     
     /**
      * User table name
      */
-    'table_name' => 'user',
+    //'table_name' => 'user',
+
+    'enable_default_entities' => false,
     
     /**
      * End of ZfcUser configuration

@@ -8,10 +8,10 @@ vagrantfile-local:
         cpus: '1'
         chosen_provider: virtualbox
         network:
-            private_network: 192.168.56.109
+            private_network: 192.168.56.106
             forwarded_port:
-                tdU01UWztBmt:
-                    host: '7410'
+                L3UFrhhwP4QB:
+                    host: '6243'
                     guest: '22'
         post_up_message: ''
         provider:
@@ -32,9 +32,9 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            lBsT5IDAnbdD:
+            xFLxyjF55S04:
                 source: ./src
-                target: /var/www/votr
+                target: /var/www/src
                 sync_type: default
                 rsync:
                     args:
@@ -78,10 +78,12 @@ apache:
     modules:
         - rewrite
     vhosts:
-        animR3JKUUrN:
-            servername: votr.dev
-            docroot: /var/www/votr/public
+        HVvlsrIC4j3p:
+            servername: abt.dev
+            docroot: /var/www/src/public
             port: '80'
+            setenv:
+                - 'APP_ENV dev'
             override:
                 - All
             options:
@@ -102,7 +104,7 @@ nginx:
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
     vhosts:
-        8ZakCjZ9FG9r:
+        Qb7NZsn9hdsP:
             server_name: awesome.dev
             server_aliases:
                 - www.awesome.dev
@@ -166,7 +168,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        1Z7yRrzftJsB:
+        5bPqi54aL7Oe:
             version: ''
 nodejs:
     install: '0'
@@ -175,14 +177,14 @@ python:
     install: '1'
     packages: {  }
     versions:
-        Y00XFnRqVGCo:
+        Q9vrrsCinRJ9:
             version: ''
 mysql:
     install: 0
     root_password: '123'
     adminer: 0
     databases:
-        M8WkK9og15Vk:
+        kU9vGRmpqTMf:
             grant:
                 - ALL
             name: dbname

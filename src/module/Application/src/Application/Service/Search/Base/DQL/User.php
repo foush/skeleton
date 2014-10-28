@@ -1,28 +1,28 @@
 <?php
 namespace Application\Service\Search\Base\DQL;
 
-use Application\Service\Search\Base\DQL as SearchService;
-use Application\Util\Param;
+use FzyCommon\Service\Search\Base\DQL as SearchService;
+use FzyCommon\Util\Params;
 use Doctrine\ORM\QueryBuilder;
 
 class User extends SearchService
 {
     /**
      * If there is some ordering that needs to be applied, do it here
-     * @param Param        $params
+     * @param Params        $params
      * @param QueryBuilder $qb
      */
-    protected function addOrdering(Param $params, QueryBuilder $qb)
+    protected function addOrdering(Params $params, QueryBuilder $qb)
     {
         $this->orderByName($params, $qb);
     }
 
     /**
      * If there is some ordering that needs to be applied, do it here
-     * @param Param        $params
+     * @param Params        $params
      * @param QueryBuilder $qb
      */
-    protected function orderByName(Param $params, QueryBuilder $qb)
+    protected function orderByName(Params $params, QueryBuilder $qb)
     {
         if ($params->has('orderby')) {
             // TODO: Implement orderby
@@ -35,11 +35,11 @@ class User extends SearchService
     }
 
     /**
-     * @param  Param        $params
+     * @param  Params        $params
      * @param  QueryBuilder $qb
      * @return $this
      */
-    protected function filterByStatus(Param $params, QueryBuilder $qb)
+    protected function filterByStatus(Params $params, QueryBuilder $qb)
     {
         if ($params->has('state')) {
             $qb->andWhere($qb->expr()->like($this->alias('state'), ':state'))->setParameter('state', $params->has('state'));
