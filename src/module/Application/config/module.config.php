@@ -1,12 +1,6 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-use Application\Util\Param;
+namespace Application;
+use FzyCommon\Util\Params;
 
 return array(
     'router' => array(
@@ -260,34 +254,19 @@ return array(
         ),
     ),
 
-    'zfcuser' => array(
-        // telling ZfcUser to use our own class
-        //'user_entity_class'       => 'SamUser\Entity\User',
-        'user_entity_class'       => 'Application\Entity\Base\User',
-        // telling ZfcUserDoctrineORM to skip the entities it defines
-        'enable_default_entities' => false,
-        // Go home after logging in, use a closure or factory method if more routing is needed
-        'login_redirect_route' => 'home',
-    ),
-
-    'doctrine' => array(
-        'driver' => array(
-            'votr_driver' => array(
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-                'cache' => 'array',
-                'paths' => array(
-                    //'module/Application/src/Application/Entity/Base/'
-                    'module/Application/src/Application/Entity/',
-                    //'paths' => __DIR__ . '/../src/SamUser/Entity',
-                ),
-            ),
-            'orm_default' => array(
-                'drivers' => array(
-                    'Application\Entity' => 'votr_driver',
-                    //'SamUser\Entity' => 'zfcuser_entity',
-                ),
-            ),
-        ),
-    ),
+//    'doctrine' => array(
+//        'driver' => array(
+//            __NAMESPACE__ . '_driver' => array(
+//                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+//                'cache' => 'array',
+//                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
+//            ),
+//            'orm_default' => array(
+//                'drivers' => array(
+//                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+//                )
+//            )
+//        )
+//    )
 
 );

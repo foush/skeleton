@@ -21,7 +21,8 @@
         "slm/mail": "1.5.0",
         "guzzlehttp/guzzle": "4.2.2",
         "fousheezy/common": "@dev",
-        "fousheezy/form": "@dev"
+        "fousheezy/form": "@dev",
+	"fousheezy/auth": "@dev"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "4.1.*"
@@ -29,11 +30,15 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "/Users/fousheezy/Development/fousheezy-zf2-common"
+            "url": "/Users/fousheezy/Development/fzycommon"
         },
         {
             "type": "vcs",
-            "url": "/Users/fousheezy/Development/abtzf2"
-        }
+            "url": "/Users/fousheezy/Development/fzyform"
+        },
+	{
+	    "type": "vcs",
+	    "url": "/Users/fousheezy/Development/fzyauth"
+	}
     ]
 }

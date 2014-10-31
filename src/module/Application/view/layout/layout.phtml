@@ -27,17 +27,17 @@
         <!--[if lt IE 10]><div class="chromeframe">Your browser is ancient! <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</div><![endif]-->
         <div class="header-container">
             <header class="wrapper group">
-                <div class="site-logo"><img class="svg" src="/dist/img/l_logo.svg" /><span class="visuallyhidden">AtlanticBT Votr</span></div>
+                <div class="site-logo"><img src="/dist/img/l_abt-logo-inverted.png" /><span class="visuallyhidden">AtlanticBT</span></div>
                 <nav class="primary">
                     <?php echo $this->mainMenu(); ?>
                 </nav>
                 <div class="utility">
-                    <?php echo $this->render('partials/identity'); ?>
-                    <?php if (!$this->zfcUserIdentity()): ?>
-                        <a class="button logout" href="<?php echo $this->url('zfcuser/login') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"> <?php echo $this->translate('Log In'); ?> </a>
-                    <?php else: ?>
-                        <a class="button logout" href="<?php echo $this->url('zfcuser/logout') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"> <?php echo $this->translate('Log Out'); ?> </a>
-                    <?php endif; ?>
+<!--                    --><?php //echo $this->render('partials/identity'); ?>
+<!--                    --><?php //if (!$this->zfcUserIdentity()): ?>
+<!--                        <a class="button logout" href="--><?php //echo $this->url('zfcuser/login') . ($this->redirect ? '?redirect='.$this->redirect : '') ?><!--"> --><?php //echo $this->translate('Log In'); ?><!-- </a>-->
+<!--                    --><?php //else: ?>
+<!--                        <a class="button logout" href="--><?php //echo $this->url('zfcuser/logout') . ($this->redirect ? '?redirect='.$this->redirect : '') ?><!--"> --><?php //echo $this->translate('Log Out'); ?><!-- </a>-->
+<!--                    --><?php //endif; ?>
                 </div>
             </header>
         </div>
