@@ -32,12 +32,12 @@
                     <?php echo $this->mainMenu(); ?>
                 </nav>
                 <div class="utility">
-<!--                    --><?php //echo $this->render('partials/identity'); ?>
-<!--                    --><?php //if (!$this->zfcUserIdentity()): ?>
-<!--                        <a class="button logout" href="--><?php //echo $this->url('zfcuser/login') . ($this->redirect ? '?redirect='.$this->redirect : '') ?><!--"> --><?php //echo $this->translate('Log In'); ?><!-- </a>-->
-<!--                    --><?php //else: ?>
-<!--                        <a class="button logout" href="--><?php //echo $this->url('zfcuser/logout') . ($this->redirect ? '?redirect='.$this->redirect : '') ?><!--"> --><?php //echo $this->translate('Log Out'); ?><!-- </a>-->
-<!--                    --><?php //endif; ?>
+                    <?php echo $this->render('partials/identity'); ?>
+                    <?php if (!$this->zfcUserIdentity()): ?>
+                        <a class="button logout" href="<?php echo $this->url('zfcuser/login') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"> <?php echo $this->translate('Log In'); ?> </a>
+                    <?php else: ?>
+                        <a class="button logout" href="<?php echo $this->url('zfcuser/logout') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"> <?php echo $this->translate('Log Out'); ?> </a>
+                    <?php endif; ?>
                 </div>
             </header>
         </div>
