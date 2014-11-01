@@ -168,13 +168,11 @@ return array(
 
         ),
         'invokables' => array(
+            'FzyAuth\SessionStorage' => 'Application\Factory\SessionStorage',
             // search result services
-            'result' => 'Application\Service\Search\Result',
-
             'users' => 'Application\Service\Search\Base\DQL\User',
             'user' => 'Application\Service\Update\User',
 
-            'user_update_factory' => 'Application\Factory\Update\User',
             'email' => 'Application\Service\Email',
             'email_attachment' => 'Application\Service\Email\Attachment',
 

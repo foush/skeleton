@@ -12,7 +12,7 @@ $settings = array(
      * Please specify the DI alias for the configured Zend\Db\Adapter\Adapter
      * instance that ZfcUser should use.
      */
-//    'zend_db_adapter' => 'Zend\Db\Adapter\Adapter',
+    //'zend_db_adapter' => 'Zend\Db\Adapter\Adapter',
 
     /**
      * User Model Entity Class
@@ -21,7 +21,7 @@ $settings = array(
      * instead of the default one provided. Default is ZfcUser\Entity\User.
      * The entity class should implement ZfcUser\Entity\UserInterface
      */
-    'user_entity_class' => 'FzyAuth\Entity\Base\User',
+//    'user_entity_class' => 'ZfcUser\Entity\User',
 
     /**
      * Enable registration
@@ -40,9 +40,9 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    'enable_username' => true,
+    //'enable_username' => false,
 
-    /**     
+    /**
      * Authentication Adapters
      *
      * Specify the adapters that will be used to try and authenticate the user
@@ -71,7 +71,7 @@ $settings = array(
      * Default value: array containing 'email'
      * Accepted values: array containing one or more of: email, username
      */
-    'auth_identity_fields' => array( 'email', 'username' ),
+    //'auth_identity_fields' => array( 'email' ),
 
     /**
      * Login form timeout
@@ -101,7 +101,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    'login_after_registration' => true,
+    //'login_after_registration' => true,
 
     /**
      * Registration Form Captcha
@@ -137,11 +137,11 @@ $settings = array(
     //'use_redirect_parameter_if_present' => true,
 
     /**
-	 * Sets the view template for the user login widget
-	 *
-	 * Default value: 'zfc-user/user/login.phtml'
+     * Sets the view template for the user login widget
+     *
+     * Default value: 'zfc-user/user/login.phtml'
      * Accepted values: string path to a view script
-	 */
+     */
     //'user_login_widget_view_template' => 'zfc-user/user/login.phtml',
 
     /**
@@ -150,10 +150,11 @@ $settings = array(
      * Upon successful login the user will be redirected to the entered route
      *
      * Default value: 'zfcuser'
-     * Accepted values: A valid route name within your application
+     * Accepted values: A valid route name within your application or a callback.
+     *                  If callback used, it will receive the identity as the param
      *
      */
-    'login_redirect_route' => 'zfcuser',
+    //'login_redirect_route' => 'zfcuser',
 
     /**
      * Logout Redirect Route
@@ -190,35 +191,33 @@ $settings = array(
 
     /**
      * Enable user state usage
-     * 
+     *
      * Should user's state be used in the registration/login process?
      */
-    'enable_user_state' => true,
-    
+    //'enable_user_state' => true,
+
     /**
      * Default user state upon registration
-     * 
+     *
      * What state user should have upon registration?
      * Allowed value type: integer
      */
-    'default_user_state' => 'active',
-    
+    //'default_user_state' => 1,
+
     /**
      * States which are allowing user to login
-     * 
+     *
      * When user tries to login, is his/her state one of the following?
      * Include null if you want user's with no state to login as well.
      * Allowed value types: null and integer
      */
-    'allowed_login_states' => array( 'active' ),
-    
+    //'allowed_login_states' => array( null, 1 ),
+
     /**
      * User table name
      */
     //'table_name' => 'user',
 
-    'enable_default_entities' => false,
-    
     /**
      * End of ZfcUser configuration
      */

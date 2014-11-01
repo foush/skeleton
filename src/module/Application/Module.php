@@ -9,23 +9,22 @@
 
 namespace Application;
 
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
-use Zend\EventManager\StaticEventManager;
-use Zend\Authentication\Result as AuthenticationResult;
-use Application\Entity\Base\UserInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Session\Config\SessionConfig;
-use Zend\Session\Container;
-use Zend\Session\SessionManager;
-use Zend\View\Model\JsonModel;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 
 /**
  * Class Module
  * @package Application
  */
-class Module
+class Module implements BootstrapListenerInterface
 {
+
+    public function onBootstrap(\Zend\EventManager\EventInterface $e)
+    {
+        $manager = new \Zend\Session\SessionManager();
+        $storage = new \Zend\Session\Storage\SessionStorage();
+        $manager->setStorage($storage);
+    }
+
     /**
      * @return mixed
      */

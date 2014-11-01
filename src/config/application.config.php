@@ -12,6 +12,7 @@ return array(
 	    'SlmMail',
 	    'FzyCommon',
 	    'FzyForm',
+        'FzyAuth',
         'Application',
     ),
 
