@@ -20,25 +20,11 @@
         	"aws/aws-sdk-php-zf2": "1.2.1",
 	        "slm/mail": "1.5.0",
         	"guzzlehttp/guzzle": "4.2.2",
-	        "fousheezy/common": "@dev",
-        	"fousheezy/form": "@dev",
-	    	"fousheezy/auth": "@dev"
+	        "fousheezy/common": "dev-master",
+        	"fousheezy/form": "dev-master",
+	    	"fousheezy/auth": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "4.1.*"
-	},
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "/Users/fousheezy/Development/fzycommon"
-        },
-        {
-            "type": "vcs",
-            "url": "/Users/fousheezy/Development/fzyform"
-        },
-	{
-	    "type": "vcs",
-	    "url": "/Users/fousheezy/Development/fzyauth"
 	}
-    ]
 }

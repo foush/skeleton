@@ -4,6 +4,7 @@ namespace Application\Service;
 
 use Aws\DynamoDb\DynamoDbClient;
 use Aws\DynamoDb\Session\SessionHandler;
+use FzyCommon\Util\Params;
 use Zend\Session\Container;
 use Zend\Session\SessionManager;
 use Zend\Session\Config\SessionConfig;
@@ -26,7 +27,7 @@ class Session extends Base
         $sessionConfig = new SessionConfig();
         $sessionConfig->setOptions($config);
         $sessionManager = new SessionManager($sessionConfig);
-        $this->addCustomSaveHandler($this->getServiceLocator()->get('Configuration'), $sessionManager);
+        $this->addCustomSaveHandler($this->getConfig(), $sessionManager);
         $sessionManager->start();
         Container::setDefaultManager($sessionManager);
     }
@@ -41,25 +42,15 @@ class Session extends Base
      *
      * @return $this
      */
-    public function addCustomSaveHandler(array $config, SessionManager $sessionManager)
+    public function addCustomSaveHandler(Params $config, SessionManager $sessionManager)
     {
-        $passed = true;
-        $array = $config;
-        // search down this config path
-        foreach (array('aws_zf2', 'session', 'save_handler', 'dynamodb') as $key) {
-            if (!isset($array[$key])) {
-                $passed = false;
-                break;
-            }
-            $array = $array[$key];
-        }
-        if ($passed) {
-            $this->createSessionTable($array);
+        $sessionHandlerConfig = $config->getWrapped('aws_zf2')->getWrapped('session')->getWrapped('save_handler')->get('dynamodb', null);
+        if ($sessionHandlerConfig) {
+            $this->createSessionTable($sessionHandlerConfig);
             /* @var $saveHandler \Aws\Session\SaveHandler\DynamoDb */
             $saveHandler = $this->getServiceLocator()->get('Aws\Session\SaveHandler\DynamoDb');
             $sessionManager->setSaveHandler($saveHandler);
         }
-
         return $this;
     }
 
@@ -95,8 +86,6 @@ class Session extends Base
      */
     public function getSessionConfig()
     {
-        $config = $this->getServiceLocator()->get('Configuration');
-
-        return isset($config['session']) ? $config['session'] : array();
+        return $this->getConfig()->get('session', array());
     }
 }
