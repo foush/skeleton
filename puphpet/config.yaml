@@ -79,7 +79,7 @@ apache:
         - rewrite
     vhosts:
         HVvlsrIC4j3p:
-            servername: abt.dev
+            servername: fzyskeleton.dev
             docroot: /var/www/src/public
             port: '80'
             setenv:
