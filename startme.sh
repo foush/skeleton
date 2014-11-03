@@ -24,6 +24,8 @@ while true; do
         read -n 1 -p "$REMOTE is this correct [y/n]? " confirmRemote
         if [[ "$doRemote" == "y" || "$doRemote" == "Y" ]]; then
             git remote add origin "$REMOTE"
+            git push origin master
+            git flow init
             break;
         fi
     else
