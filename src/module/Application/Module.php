@@ -9,33 +9,23 @@
 
 namespace Application;
 
-use Zend\ModuleManager\Feature\BootstrapListenerInterface;
+use Zend\Mvc\ModuleRouteListener;
+use Zend\Mvc\MvcEvent;
 
-/**
- * Class Module
- * @package Application
- */
-class Module implements BootstrapListenerInterface
+class Module
 {
-
-    public function onBootstrap(\Zend\EventManager\EventInterface $e)
+    public function onBootstrap(MvcEvent $e)
     {
-        $manager = new \Zend\Session\SessionManager();
-        $storage = new \Zend\Session\Storage\SessionStorage();
-        $manager->setStorage($storage);
+        $eventManager        = $e->getApplication()->getEventManager();
+        $moduleRouteListener = new ModuleRouteListener();
+        $moduleRouteListener->attach($eventManager);
     }
 
-    /**
-     * @return mixed
-     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
-    /**
-     * @return array
-     */
     public function getAutoloaderConfig()
     {
         return array(
