@@ -14,7 +14,7 @@
  *
  *
  */
-angular.module('votr').service('select2', ["Restangular", function(Restangular) {
+angular.module('fzyskeleton').service('select2', ["Restangular", function(Restangular) {
     var defaultConfig = {
         allowClear:true,
         placeholder: '',

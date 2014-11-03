@@ -1,4 +1,4 @@
-angular.module('votr').directive('dateFilter', ["$filter", function($filter) {
+angular.module('fzyskeleton').directive('dateFilter', ["$filter", function($filter) {
     return {
         restrict: 'A',
         require: 'ngModel',

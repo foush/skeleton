@@ -1,4 +1,4 @@
-angular.module('votr').controller('AlertCtrl',["$scope", "alert", function ($scope,alert) {
+angular.module('fzyskeleton').controller('AlertCtrl',["$scope", "alert", function ($scope,alert) {
 
     $scope.init = function(messages) {
         alert.add(messages);

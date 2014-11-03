@@ -1,4 +1,4 @@
-angular.module('votr').service('ControlsService', [function () {
+angular.module('fzyskeleton').service('ControlsService', [function () {
     return {
         editUser: function (user) {
             if (user.id) {

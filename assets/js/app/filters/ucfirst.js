@@ -1,4 +1,4 @@
-angular.module('votr').filter('ucfirst', function() {
+angular.module('fzyskeleton').filter('ucfirst', function() {
     return function(input, scope) {
         if (input!=null)
             input = input.toLowerCase();

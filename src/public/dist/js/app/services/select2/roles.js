@@ -1,4 +1,4 @@
-angular.module('votr').service('select2Role', ["Restangular", "select2", function(Restangular, select2) {
+angular.module('fzyskeleton').service('select2Role', ["Restangular", "select2", function(Restangular, select2) {
     var resource = 'role';
     var roles = Restangular.all(resource).all('index');
     var loadingInit = false;

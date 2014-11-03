@@ -1,4 +1,4 @@
-angular.module('votr').service('editService', ["Restangular", "alert", "formAlert", "$window", "$log", function(Restangular, alert, formAlert, $window, $log) {
+angular.module('fzyskeleton').service('editService', ["Restangular", "alert", "formAlert", "$window", "$log", function(Restangular, alert, formAlert, $window, $log) {
     return {
         init: function($scope) {
             var options = $.extend({

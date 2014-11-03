@@ -1,4 +1,4 @@
-angular.module('votr').directive('percentFilter', ["$filter", function($filter) {
+angular.module('fzyskeleton').directive('percentFilter', ["$filter", function($filter) {
     return {
         restrict: 'A',
         require: 'ngModel',

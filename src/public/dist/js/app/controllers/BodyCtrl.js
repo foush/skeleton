@@ -1,4 +1,4 @@
-angular.module('votr').controller('BodyCtrl', ["$scope", "$interval", "$log", "Restangular", "alert", "formAlert", function ($scope, $interval, $log, Restangular, alert, formAlert) {
+angular.module('fzyskeleton').controller('BodyCtrl', ["$scope", "$interval", "$log", "Restangular", "alert", "formAlert", function ($scope, $interval, $log, Restangular, alert, formAlert) {
     // for future use
     $scope._alert = alert;
     $scope._fAlert = formAlert;

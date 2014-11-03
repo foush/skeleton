@@ -1,3 +1,3 @@
 #!/bin/sh
-mysql -uroot -p123 -e 'create database votr;'
-mysql -uroot -p123 votr < /vagrant/sql/schema.sql
+mysql -uroot -p123 -e 'create database fzyskeleton;'
+mysql -uroot -p123 fzyskeleton < /vagrant/sql/schema.sql

@@ -1,4 +1,4 @@
-angular.module('votr').directive('moneyFilter', function($filter) {
+angular.module('fzyskeleton').directive('moneyFilter', function($filter) {
     return {
         restrict: 'A',
         require: 'ngModel',

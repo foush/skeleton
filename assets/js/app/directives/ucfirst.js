@@ -1,4 +1,4 @@
-angular.module('votr').directive('ucfirst', function() {
+angular.module('fzyskeleton').directive('ucfirst', function() {
     return {
         require: 'ngModel',
         link: function(scope, element, attrs, modelCtrl) {

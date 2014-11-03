@@ -93,7 +93,7 @@ msgstr "Bienvenue dans %sZend Framework 2%s"
 #: ../view/application/index/index.phtml:3
 #, php-format
 msgid "Congratulations! You have successfully installed the %sZF2 Skeleton Application%s. You are currently running Zend Framework version %s. This skeleton can serve as a simple starting point for you to begin building your application on ZF2."
-msgstr "Félicitations ! Vous avez installé %sZF2 Skeleton Application%s avec succès. Vous utilisez actuellement Zend Framework version %s. Cette structure peut vous servir comme point de départ simple pour démarrer la construction de votre application avec ZF2."
+msgstr "Félicitations ! Vous avez installé %sZF2 Skeleton Application%s avec succès. Vous utilisez actuellement Zend Framework version %s. Cette structure peut vous servir comme point de départ simple pour démarrer la construction de fzyskeletone application avec ZF2."
 
 #: ../view/application/index/index.phtml:4
 msgid "Fork Zend Framework 2 on GitHub"

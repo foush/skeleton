@@ -1,4 +1,4 @@
-angular.module('votr').service('listService', ["Restangular", "$q", "$log", "debounce", function(Restangular, $q, $log, debounce) {
+angular.module('fzyskeleton').service('listService', ["Restangular", "$q", "$log", "debounce", function(Restangular, $q, $log, debounce) {
     var getListItems = function($scope, dataVar, route, params, dtCallback, options) {
 
         if ($scope.abort) {

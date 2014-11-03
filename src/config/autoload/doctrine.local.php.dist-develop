@@ -9,9 +9,9 @@ return array(
 				'params' => array(
 					'host' => 'prodmysql5617.ccwrydi246eb.us-east-1.rds.amazonaws.com',
 					'port' => '3306',
-					'user' => 'votr',
+					'user' => 'fzyskeleton',
 					'password' => 'Rw4NAhMmfnKDFL',
-					'dbname' => 'votr_dev',
+					'dbname' => 'fzyskeleton_dev',
 					'charset'  => 'UTF8'
 				)
 			)

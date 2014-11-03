@@ -1,4 +1,4 @@
-var votr = angular.module('votr', [
+var fzyskeleton = angular.module('fzyskeleton', [
     'ngSanitize',
     'textAngular',
     'restangular',
@@ -12,11 +12,11 @@ var votr = angular.module('votr', [
     'checklist-model'
 ]);
 
-votr.factory('_', function() {
+fzyskeleton.factory('_', function() {
     return window._;
 });
 
-votr.config(function(RestangularProvider) {
+fzyskeleton.config(function(RestangularProvider) {
     RestangularProvider.setBaseUrl('/api/v1/');
     RestangularProvider.addResponseInterceptor(function(response, operation) {
         if (operation === "getList" && response && response.data) {

@@ -1,4 +1,4 @@
-angular.module('votr').controller('IndexCtrl', function($scope) {
+angular.module('fzyskeleton').controller('IndexCtrl', function($scope) {
 
 
 });

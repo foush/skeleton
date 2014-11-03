@@ -37,7 +37,7 @@
  *
  *
  */
-angular.module('votr').factory('alertFactory', ["$timeout", "$filter", function($timeout, $filter) {
+angular.module('fzyskeleton').factory('alertFactory', ["$timeout", "$filter", function($timeout, $filter) {
     var baseService = function() {
         this._alertCount = 1;
         this._alerts = {};
@@ -155,12 +155,12 @@ angular.module('votr').factory('alertFactory', ["$timeout", "$filter", function(
     };
     return baseService;
 }]);
-angular.module('votr').service('alert', ["alertFactory", function(alertFactory) {
+angular.module('fzyskeleton').service('alert', ["alertFactory", function(alertFactory) {
     var alerts = new alertFactory();
     return alerts;
 }]);
 
-angular.module('votr').factory('formAlertFactory', ["$timeout", "$filter", "alertFactory", function($timeout, $filter, alertFactory) {
+angular.module('fzyskeleton').factory('formAlertFactory', ["$timeout", "$filter", "alertFactory", function($timeout, $filter, alertFactory) {
 
     var formService = function() {
         alertFactory.apply(this, arguments);
@@ -194,7 +194,7 @@ angular.module('votr').factory('formAlertFactory', ["$timeout", "$filter", "aler
     };
     return formService;
 }]);
-angular.module('votr').service('formAlert', ["formAlertFactory", function(formAlertFactory) {
+angular.module('fzyskeleton').service('formAlert', ["formAlertFactory", function(formAlertFactory) {
     var alerts = new formAlertFactory();
     return alerts;
 }]);

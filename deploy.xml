@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="votr" default="dev" basedir=".">
+<project name="fzyskeleton" default="dev" basedir=".">
 
     <target name="dev">
         <echo message="Running deploy script in EC2" />

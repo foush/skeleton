@@ -1,4 +1,4 @@
-angular.module('votr').directive('dialog', function(dialogService, $log) {
+angular.module('fzyskeleton').directive('dialog', function(dialogService, $log) {
     return {
         restrict:'A',
         link: function(scope, element, attrs) {

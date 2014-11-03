@@ -1,4 +1,4 @@
-angular.module('votr').service('UtilitiesService', [function ($log) {
+angular.module('fzyskeleton').service('UtilitiesService', [function ($log) {
     // Convert Null Object representation to null for the sake of Select2
     var transformEntityNull = function (entity, field) {
         if (angular.isUndefined(entity[field]) || entity[field] === null || angular.isUndefined(entity[field].id) || entity[field].id === null) {

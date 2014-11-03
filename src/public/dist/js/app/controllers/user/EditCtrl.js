@@ -1,4 +1,4 @@
-angular.module('votr').controller('EditCtrl', ["$scope", "Restangular", "editService", "alert", "formAlert", function($scope, Restangular, editService, alert, formAlert) {
+angular.module('fzyskeleton').controller('EditCtrl', ["$scope", "Restangular", "editService", "alert", "formAlert", function($scope, Restangular, editService, alert, formAlert) {
     editService.init($scope, {
         objectScopeName: 'user',
         entityIdName: 'user',

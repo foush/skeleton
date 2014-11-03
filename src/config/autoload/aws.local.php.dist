@@ -12,7 +12,7 @@ return array(
 		's3' => array(
 			'key' => 'CHANGEME',
 			'secret' => 'CHANGEME',
-			'bucket' => 'votr-develop',
+			'bucket' => 'fzyskeleton-develop',
 			'environment_prefix' => 'johnf',
 		),
 		'ses' => array(
