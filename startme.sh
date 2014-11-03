@@ -26,5 +26,7 @@ while true; do
             git remote add origin "$REMOTE"
             break;
         fi
+    else
+       break
     fi
 done
