@@ -12,6 +12,8 @@ fi
 
 # delete original git history
 rm -rf .git/
+rm ./specify.sh
+rm ./startme.sh
 # start new git repository
 git init
 git add --all
