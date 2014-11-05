@@ -9,11 +9,16 @@ read -n 1 -p "Set up database from remote configuration [y/n]? " doDb
 if [[ "$doDb" == "y" || "$doDb" == "Y" ]]; then
     ./src/sync-qa-db.sh
 fi
+read -n 1 -p "Set up gulp [y/n]? " doGulp
+if [[ "$doGulp" == "y" || "$doGulp" == "Y" ]]; then
+    ./gulp.sh
+fi
 
 # delete original git history
 rm -rf .git/
 rm ./specify.sh
 rm ./startme.sh
+rm ./gulp.sh
 # start new git repository
 git init
 git add --all

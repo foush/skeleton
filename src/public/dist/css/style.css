@@ -597,7 +597,7 @@ a {
       background-color: rgba(221, 221, 221, 0.9);
       -webkit-transition: all 0.15s ease-in-out;
       transition: all 0.15s ease-in-out; }
-    .block-links li:nth-child(4n) {
+    .block-links li:nth-child(4n):nth-child(block) {
       margin-right: 0; }
     .block-links li a {
       position: relative;
