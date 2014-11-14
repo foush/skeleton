@@ -20,6 +20,31 @@ return array(
 					),
 				),
 				'may_terminate' => true,
+				'child_routes' => array(
+					'system' => array(
+						'type' => 'literal',
+						'options' => array(
+							'route' => 'system',
+						),
+						'may_terminate' => true,
+						'child_routes' => array(
+							'user' => array(
+								'type' => 'segment',
+								'options' => array(
+									'route' => '/user[/[:action[/:userId]]]',
+									'constraints' => array(
+										'userId' => '\d+',
+									),
+									'defaults' => array(
+										'controller' => 'Application\Controller\User',
+										'action' => 'index',
+									),
+								),
+								'may_terminate' => true,
+							),
+						),
+					),
+				),
 			),
 			'api' => array(
 				'type' => 'Literal',
@@ -31,9 +56,52 @@ return array(
 					),
 				),
 				'may_terminate' => true,
-//		        'child_routes' => array(
-//
-//		        ),
+		        'child_routes' => array(
+			        'users' => array(
+				        'type' => 'segment',
+				        'options' => array(
+					        'route' => '/users[/:userId]',
+					        'constraints' => array(
+						        'userId' => '\d+',
+					        ),
+					        'defaults' => array(
+						        'controller' => 'Application\Controller\Api\User',
+					        ),
+				        ),
+				        'child_routes' => array(
+					        'get' => array(
+						        'type' => 'method',
+						        'options' => array(
+							        'verb' => 'get',
+							        'defaults' => array(
+								        'action' => 'index',
+							        ),
+						        ),
+						        'may_terminate' => true,
+					        ),
+					        'post' => array(
+						        'type' => 'method',
+						        'options' => array(
+							        'verb' => 'post',
+							        'defaults' => array(
+								        'action' => 'update',
+							        ),
+						        ),
+						        'may_terminate' => true,
+					        ),
+				        ),
+			        ),
+			        'roles' => array(
+				        'type' => 'literal',
+				        'options' => array(
+					        'route' => '/roles',
+					        'defaults' => array(
+						        'controller' => 'Application\Controller\Api\Role',
+						        'action' => 'index',
+					        ),
+				        ),
+			        ),
+		        ),
 			),
 		),
 	),
@@ -48,6 +116,15 @@ return array(
 		'factories' => array(
 			'Navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
 		),
+		'invokables' => array(
+			// returns list of users
+			'users' => 'Application\Service\Search\Base\DQL\User',
+			// updates or creates user entity
+			'user' => 'Application\Service\Update\User',
+
+			// returns list of roles
+			'roles' => 'Application\Service\Search\Base\Role',
+		),
 	),
 	'translator' => array(
 		'locale' => 'en_US',
@@ -61,8 +138,14 @@ return array(
 	),
 	'controllers' => array(
 		'invokables' => array(
+			// web routes
 			'Application\Controller\Index' => 'Application\Controller\IndexController',
+			'Application\Controller\User' => 'Application\Controller\UserController',
+
+			// api routes
 			'Application\Controller\Api\Index' => 'Application\Controller\Api\IndexController',
+			'Application\Controller\Api\User' => 'Application\Controller\Api\UserController',
+			'Application\Controller\Api\Role' => 'Application\Controller\Api\RoleController',
 		),
 	),
 	'view_helpers' => array(
@@ -109,6 +192,16 @@ return array(
 			),
 		),
 	),
+
+	'zfcuser' => array(
+		// telling ZfcUser to use our own class
+		'user_entity_class'       => 'Application\Entity\User',
+	),
+
+	\FzyAuth\Service\Base::MODULE_CONFIG_KEY => array(
+		'null_user_class' => 'Application\Entity\UserNull',
+	),
+
 	'doctrine' => array(
 		'driver' => array(
 			__NAMESPACE__ . '_driver' => array(

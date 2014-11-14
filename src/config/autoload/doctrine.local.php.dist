@@ -15,6 +15,12 @@ return array(
 					'charset'  => 'UTF8'
 				)
 			)
-		)
+		),
+		'configuration' => array(
+		    'orm_default' => array(
+		    // for development, autogeneration is ok, for production it is not.
+		        'generate_proxies' => true,
+		    ),
+		),
 	),
 );

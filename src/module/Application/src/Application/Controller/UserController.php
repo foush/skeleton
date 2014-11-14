@@ -7,15 +7,17 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application\Controller\Api;
+namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\JsonModel;
-
-class IndexController extends AbstractActionController
+class UserController extends AbstractWebController
 {
-    public function indexAction()
+    protected function getSearchServiceKey()
     {
-        return new JsonModel(array('success' => true));
+        return 'users';
+    }
+
+    protected function getUpdateServiceKey()
+    {
+        return 'user';
     }
 }

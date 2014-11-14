@@ -133,6 +133,8 @@ php:
         pear: {  }
         pecl:
             - pecl_http
+            - redis
+            - APC
     ini:
         display_errors: On
         error_reporting: '-1'

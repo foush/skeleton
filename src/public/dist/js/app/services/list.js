@@ -1,4 +1,4 @@
-angular.module('ncsolar').service('listService', ["DTOptionsBuilder", "DTColumnBuilder", function(DTOptionsBuilder, DTColumnBuilder) {
+angular.module('fzyskeleton').service('listService', ["DTOptionsBuilder", "DTColumnBuilder", function(DTOptionsBuilder, DTColumnBuilder) {
     return {
         /**
          * Takes an angular scope object, a Restangular endpoint object and an optional options array
@@ -10,19 +10,23 @@ angular.module('ncsolar').service('listService', ["DTOptionsBuilder", "DTColumnB
         attachTo: function(scope, restObj) {
             var options = angular.extend({}, {
                 // TODO: add options as needed
+                fnData: function(dtData) {
+                    return dtData;
+                }
             }, arguments[2] || {});
-
             scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('ajax', {
                     // Either you specify the AjaxDataProp here
                     // dataSrc: 'data',
                     url: restObj.getRequestedUrl(),
-                    type: 'GET'
+                    type: 'GET',
+                    data: options.fnData
                 })
                 // or here
                 .withDataProp('data')
                 .withOption('serverSide', true)
                 .withOption('processing', true)
+                .withOption('order', options.order || [0, 'asc'])
                 .withPaginationType('full_numbers');
             if (options.columns && angular.isArray(options.columns)) {
                 var cols = [];
@@ -31,6 +35,9 @@ angular.module('ncsolar').service('listService', ["DTOptionsBuilder", "DTColumnB
                 });
                 scope.dtColumns = cols;
             }
+        },
+        refresh: function(scope) {
+            scope.dtOptions.reloadData();
         }
     }
 }]);

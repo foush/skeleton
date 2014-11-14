@@ -21,8 +21,11 @@ rm ./startme.sh
 rm ./gulp.sh
 # start new git repository
 git init
+# add pre-commit hook
+mv pre-commit-template.sh .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
 git add --all
-git commit -m"Initial commit"
+git commit --no-verify -m"Initial commit"
 # prompt for a remote
 while true; do
     read -n 1 -p "Set up remote [y/n]? " doRemote

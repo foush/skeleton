@@ -1,0 +1,22 @@
+<?php
+$this->inlineScript()->appendFile('/dist/js/app/services/edit.js')
+	->appendFile('/dist/js/app/services/select2.js')
+	->appendFile('/dist/js/app/services/select2/roles.js')
+     ->appendFile('/dist/js/app/controllers/user/EditCtrl.js');
+?>
+<div data-ng-controller="EditCtrl"<?php echo $this->fzyNgInit()->addItems($this->entity); ?>>
+	<div class="action-bar">
+		<h1 data-ng-bind-template="{{user.id && 'Edit' || 'Create'}} User"></h1>
+		<div class="buttons">
+
+		</div>
+	</div>
+	<?php echo $this->fzyForm($this->form); ?>
+	<div class="action-bar">
+		<div></div>
+		<div class="buttons">
+			<a class="button naked" href="<?php echo $this->url('home/system/user'); ?>" data-ng-disabled="saving"><?php echo $this->translate('Cancel'); ?></a>
+			<button class="button primary" type="button" data-ng-disabled="saving" data-ng-click="save(user)">Save User</button>
+		</div>
+	</div>
+</div>

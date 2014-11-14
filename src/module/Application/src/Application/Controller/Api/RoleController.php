@@ -9,13 +9,21 @@
 
 namespace Application\Controller\Api;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\JsonModel;
-
-class IndexController extends AbstractActionController
+class RoleController extends AbstractApiController
 {
-    public function indexAction()
+    /**
+     * @return mixed
+     */
+    protected function getSearchServiceKey()
     {
-        return new JsonModel(array('success' => true));
+        return 'roles';
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getUpdateServiceKey()
+    {
+        throw new \RuntimeException("Roles may not be updated");
     }
 }

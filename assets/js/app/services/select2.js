@@ -51,7 +51,12 @@ angular.module('fzyskeleton').service('select2', function(Restangular) {
                 resource: '',
                 resourceParams: {},
                 getInitDataFromElement: function(element, value) {
-                    return angular.fromJson(value);
+                    try {
+                        return angular.fromJson(value);
+                    } catch (e) {
+                        // may be a constant not a json encoded object
+                    }
+                    return value;
                 }
             }, arguments[3] || {});
 

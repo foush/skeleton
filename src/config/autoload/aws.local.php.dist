@@ -13,7 +13,7 @@ return array(
 			'key' => 'CHANGEME',
 			'secret' => 'CHANGEME',
 			'bucket' => 'fzyskeleton-develop',
-			'environment_prefix' => 'johnf',
+			'environment_prefix' => 'fzy',
 		),
 		'ses' => array(
 			'key' => 'CHANGEME',
