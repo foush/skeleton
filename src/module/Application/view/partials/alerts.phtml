@@ -1,0 +1,6 @@
+<div data-ng-controller="AlertCtrl" <?php if (!$this->noFlash) { echo $this->fzyNgInit()->addItem($this->fzyFlashMessages(true)); } ?>>
+
+    <div class="alert-box" data-ng-repeat="alert in _alert.getAlerts(<?php if ($this->namespace) { echo "'" . $this->namespace . "'"; } ?>)" ng-class="_alert.cls(alert.type)" data-ng-bind-html="alert.message">
+        <!--		<button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="_alert.remove(alert.id)">&times;</button>-->
+    </div>
+</div>

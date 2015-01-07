@@ -1,0 +1,30 @@
+{
+	"name": "Voting App",
+	"description": "Internal App to allow voting",
+	"license": "BSD-3-Clause",
+	"keywords": [],
+	"homepage": "http://atlanticbt.com/",
+	"require": {
+		"php": ">=5.3.3",
+		"zendframework/zendframework": ">=2.2.7",
+		"zf-commons/zfc-base": ">=0.1.2",
+       	"zf-commons/zfc-user": ">=1.0.0",
+		"zf-commons/zfc-user-doctrine-orm": ">=1.0",
+		"doctrine/doctrine-module": "0.*",
+		"doctrine/doctrine-orm-module": "0.*",
+		"zendframework/zendservice-amazon": ">=2.0",
+		"doctrine/annotations": ">=1.0",
+		"doctrine/common": ">=2.1",
+		"zendframework/zend-developer-tools": "dev-master",
+        "aws/aws-sdk-php": "2.*",
+        "aws/aws-sdk-php-zf2": "1.2.1",
+        "slm/mail": "1.5.0",
+        "guzzlehttp/guzzle": "4.2.2",
+        "fousheezy/common": "dev-master",
+        "fousheezy/form": "dev-master",
+	    "fousheezy/auth": "dev-master"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "4.1.*"
+	}
+}

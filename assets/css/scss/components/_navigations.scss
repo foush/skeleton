@@ -1,0 +1,182 @@
+//==================================================================
+// Navigations Partial
+// Styles for various types of navigation componenets.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Primary Navigation
+// =================================================================
+nav.primary {
+    background-color: darken($color_orient, 10%); font-weight: 600; border-top-left-radius: $corners; border-top-right-radius: $corners;
+
+    ul {
+        padding: 0; margin: 0; list-style: none; font-size: 0; line-height: 0;
+    
+        li {
+            position: relative; display: inline-block; line-height: 1;
+            @include rem(font-size, 16px);
+            @include transition(all $animation_speed ease-in-out);
+        }
+        li:first-child {
+            border-top-left-radius: $corners;
+        }
+        a {
+            display: block; color: #fff; text-transform: uppercase;
+            @include rem(padding, 20px 40px);
+        }
+        .svg {
+            @include rem(width, 16px);
+            @include rem(height,16px);
+        }
+        .has-menu {
+            vertical-align: bottom;
+            @include rem(width, 8px);
+        }
+        .svg * {
+            fill: #fff;
+        }
+
+        // Hover
+        //--------------------------------------------------------------
+        li:hover {
+            background-color: darken($color_orient, 15%);
+        }
+        li:hover > a {
+            color: #fff;
+        }
+        li:hover .svg * {
+            fill: #fff;
+        }
+        li:hover ul {
+            height: auto; opacity: 1;
+            @include transform(translate3d(0,0,0));
+        }
+
+        // Current
+        //--------------------------------------------------------------
+        li.active {
+            background-color: #fff; background-color: lighten($color_silver_chalice, 35%); border-top-left-radius: $corners; border-top-right-radius: $corners;
+        }
+        li.active > a {
+            color: darken($color_orient, 10%);
+        }
+        li.active .svg * {
+            fill: darken($color_orient, 10%);
+        }
+        
+    }
+    ul ul {
+        position: absolute; left: 0; height: 0; background-color: darken($color_orient, 15%); overflow: hidden; opacity: 0; z-index: 500;
+        @include rem(top, 58px);
+        @include rem(width, 250px);
+        @include transform(translate3d(0,-10px,0));
+        @include transform-origin(50% 0);
+        @include transition(all $animation_speed ease-in-out);
+    
+        li {
+            display: block;
+        }
+        a {
+            color: rgba(#fff, .8); text-transform: capitalize;
+        }
+
+        // Active
+        //--------------------------------------------------------------
+        li.active {
+            background-color: darken($color_orient, 20%); border-radius: 0;
+        }
+        li.active a {
+            color: #fff;
+        }
+
+        // Hover
+        //--------------------------------------------------------------
+        li:hover {
+            background-color: darken($color_orient, 20%);
+        }
+        li:hover a {
+            color: #fff;
+        }
+    }
+    li.active ul {
+        background-color: #fff; box-shadow: 0 1px 3px rgba(#000, .25);
+
+        a {
+            color: darken($color_orient, 15%);
+        }
+    }
+    li.active ul li:hover {
+        background-color: lighten($color_silver_chalice, 35%);
+    }
+    li.active ul li:hover a {
+        color: $color_silver_chalice;
+    }
+    li.active ul li.active {
+        background-color: lighten($color_silver_chalice, 25%);
+    }
+    li.active ul li.active a {
+        color: darken($color_silver_chalice, 25%);
+    }
+
+}
+
+
+// Secondary Navigation
+// =================================================================
+nav.secondary {
+    @include rem(margin, 0 0 0 40px);
+
+    ul {
+        padding: 0; margin: 0; list-style: none;
+    
+        li {
+            display: inline-block;
+            @include rem(margin-left, 20px);
+        }
+        li:first-child {
+            margin: 0;
+        }
+        li a {
+            color: #fff;
+            @include transition(all $animation_speed ease-in-out);
+        }
+
+        // Hover
+        //--------------------------------------------------------------
+        li:hover a {
+            color: rgba(#fff, .75);
+        }
+
+        // Current
+        //--------------------------------------------------------------
+        li.current a {
+            background-color: #fff; color: $color_orient;
+            @include rem(padding, 4px 10px);
+            @include rem(border-radius, $corners);
+        }
+    }
+}
+
+// Footer Navigation
+// =================================================================
+nav.footer {}
+
+
+// Utility Navigation
+// =================================================================
+nav.utility {}
+
+
+// Breadcrumb Navigation
+// =================================================================
+.breadcrumbs {}
+
+
+// Pagination Navigation
+// =================================================================
+.pagination {}
+
+.pagination span, .pagination a {}
+.pagination span:first-child {}
+.pagination a:hover {}
+.pagination .current {}

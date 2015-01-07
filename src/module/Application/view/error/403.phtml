@@ -1,0 +1,12 @@
+<h1><?php echo $this->translate('403 Forbidden') ?></h1>
+<h2>
+    <?php if (\BjyAuthorize\Guard\Controller::ERROR === $error) : ?>
+        You are not authorized to access this page.
+    <?php elseif (\BjyAuthorize\Guard\Route::ERROR === $error)  : ?>
+        You are not authorized to access this page.
+    <?php elseif ($error == 'error-unauthorized') : ?>
+        You are not authorized <?php echo $reason; ?>.
+    <?php else : ?>
+        An unknown error occurred.
+    <?php endif;?>
+</h2>

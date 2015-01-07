@@ -1,0 +1,70 @@
+//==================================================================
+// Helpers Partial
+// Various classes that will help clean up layouts and styles
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+.ir {
+    display: block;
+    overflow: hidden;
+    border: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    text-align: left;
+    text-indent: -999em;
+    direction: ltr;
+    *line-height: 0;
+    br {
+        display: none;
+    }
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    border: 0;
+    &.focusable {
+        &:active,
+        &:focus {
+            position: static;
+            overflow: visible;
+            clip: auto;
+            margin: 0;
+            width: auto;
+            height: auto;
+        }
+    }
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.group {
+    *zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// Prevent layout break with Google AdWords
+img[src*="googleadservices.com"] {
+    position: absolute;
+    top: 0;
+    left: -9000em;
+}

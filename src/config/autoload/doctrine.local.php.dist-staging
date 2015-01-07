@@ -1,0 +1,20 @@
+<?php
+
+return array(
+	'doctrine' => array(
+		'connection' => array(
+			// default connection name
+			'orm_default' => array(
+				'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+				'params' => array(
+					'host' => 'prodmysql5617.ccwrydi246eb.us-east-1.rds.amazonaws.com',
+					'port' => '3306',
+					'user' => 'fzyskeleton',
+					'password' => 'Rw4NAhMmfnKDFL',
+					'dbname' => 'fzyskeleton_qa',
+					'charset'  => 'UTF8'
+				)
+			)
+		)
+	),
+);

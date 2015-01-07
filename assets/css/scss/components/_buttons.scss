@@ -1,0 +1,73 @@
+//==================================================================
+// Buttons Partial
+// Styles for various traditional actions.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+
+// Variables
+// =================================================================
+
+
+// Button
+// =================================================================
+input[type="submit"], button, a.button {
+	display: inline-block; color: rgba(#fff, .8); font-weight: 600; font-family: $font_regular; line-height: 1.3; vertical-align: baseline; white-space: nowrap; text-align: center;
+	@include rem(padding, 10px 20px);
+	@include rem(margin, 0 0 10px);
+	@include rem(border-radius, $corners);
+	@include transition(all $animation_speed ease-in-out);
+
+	// Color Variations
+	//--------------------------------------------------------------
+	&.primary { background-color: $color_orient; }
+	&.secondary { background-color: $color_silver_chalice; }
+	&.naked { background: none; color: $color_orient; }
+	&.logout,
+	&.office-toggle { background-color: darken($color_orient, 10%); }
+
+	// Hover States
+	//--------------------------------------------------------------
+	&:hover { color: #fff; }
+	&.primary:hover { background-color: darken($color_orient, 5%); }
+	&.secondary:hover { background-color: darken($color_silver_chalice, 5%); }
+	&.naked:hover { color: $color_cerulean; }
+	&.logout:hover,
+	&.office-toggle:hover { background-color: darken($color_orient, 15%); }
+
+	// Focus States
+	//--------------------------------------------------------------
+	&:focus { outline: 0; }
+
+	// Disabled States
+	//--------------------------------------------------------------
+	&[disabled],
+	&[disabled]:hover {
+		background-color: lighten($color_silver_chalice, 25%); cursor: not-allowed;
+	}
+
+}
+
+.flex-spacer {
+	@include flex-grow(2);
+}
+
+
+// Button Prompt
+// =================================================================
+.button-prompt-wrapper {
+	position: relative; display: inline-block;
+	//@include flex-grow(2);
+}
+.button-prompt {
+	position: absolute; left: 50%; background-color: lighten($color_silver_chalice, 35%); box-shadow: 0 1px 2px rgba(#000, .25); text-align: center; z-index: 10;
+	@include rem(bottom, 40px);
+	@include rem(width, 300px);
+	@include rem(padding, 20px);
+	@include rem(margin-left, -150px);
+	@include rem(border-radius, $corners);
+
+	p {
+		margin-top: 0;
+	}
+}

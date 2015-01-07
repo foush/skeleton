@@ -1,0 +1,12 @@
+//==================================================================
+// Footer Partial
+// Styles for footer layout.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Footer
+// =================================================================
+.footer-container {
+	position: fixed; bottom: 0; width: 100%; background-color: rgba(#fff, .9); border-top: 1px solid lighten($color_silver_chalice, 25%); text-align: center;
+	@include rem(border-width, 1px);
+}

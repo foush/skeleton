@@ -1,0 +1,27 @@
+<?php
+
+return array(
+	'aws' => array(
+		'key' => 'CHANGEME',
+		'secret' => 'CHANGEME',
+		'region' => 'us-east-1',
+
+
+	),
+	'aws_services' => array(
+		's3' => array(
+			'key' => 'CHANGEME',
+			'secret' => 'CHANGEME',
+			'bucket' => 'fzyskeleton-develop',
+			'environment_prefix' => 'johnf',
+		),
+		'ses' => array(
+			'key' => 'CHANGEME',
+			'secret' => 'CHANGEME',
+			'region' => 'us-east-1',
+		),
+		'dynamodb' => array(
+			'table' => 'sessions',
+		),
+	),
+);

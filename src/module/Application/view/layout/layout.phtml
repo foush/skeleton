@@ -1,0 +1,59 @@
+<?php echo $this->doctype(); ?>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en" data-ng-app="fzyskeleton"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en" data-ng-app="fzyskeleton"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en" data-ng-app="fzyskeleton"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" data-ng-app="fzyskeleton"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="cleartype" content="on">
+    <?php echo $this->headTitle('FzySkeleton ')->setSeparator(' - ')->setAutoEscape(false) ?>
+    <?php echo $this->headMeta()
+                    ->appendName('viewport', 'width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no')
+                    ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+    <?php echo $this->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/touch-icon-iphone.png'))
+                    ->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/touch-icon-ipad.png', 'sizes' => '72x72'))
+                    ->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/touch-icon-iphone-retina.png', 'sizes' => '114x114'))
+                    ->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/touch-icon-ipad-retina.png', 'sizes' => '144x144'))
+                    ->headLink(array('rel' => 'shortcut icon', 'href' => $this->basePath() . '/dist/img/favicon.png'))
+                    ->prependStylesheet($this->basePath() . '/dist/css/print.css', 'print')
+                    ->prependStylesheet($this->basePath() . '/dist/css/style.css')
+                    ->prependStylesheet($this->basePath() . 'http://fonts.googleapis.com/css?family=Open+Sans:400,600')
+                    ->prependStylesheet($this->basePath() . '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css') ?>
+	<?php echo $this->headScript()
+		->appendFile('/dist/js/head.min.js'); ?>
+</head>
+    <body data-ng-controller="BodyCtrl" data-ng-cloak>
+        <!--[if lt IE 10]><div class="chromeframe">Your browser is ancient! <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</div><![endif]-->
+        <div class="header-container">
+            <header class="wrapper group">
+                <div class="site-logo"><img src="/dist/img/l_abt-logo-inverted.png" /><span class="visuallyhidden">AtlanticBT</span></div>
+                <nav class="primary">
+                    <?php echo $this->mainMenu(); ?>
+                </nav>
+                <div class="utility">
+                    <?php echo $this->render('partials/identity'); ?>
+                    <?php if (!$this->zfcUserIdentity()): ?>
+                        <a class="button logout" href="<?php echo $this->url('zfcuser/login') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"> <?php echo $this->translate('Log In'); ?> </a>
+                    <?php else: ?>
+                        <a class="button logout" href="<?php echo $this->url('zfcuser/logout') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"> <?php echo $this->translate('Log Out'); ?> </a>
+                    <?php endif; ?>
+                </div>
+            </header>
+        </div>
+        <div class="content-container">
+            <main class="wrapper group">
+                <?php echo $this->render('partials/alerts'); ?>
+                <?php echo $this->content; ?>
+            </main>
+        </div>
+        <div class="footer-container animated fadeInUp">
+            <footer class="wrapper group">
+                <p>&copy; <?php echo date('Y'); ?> AtlanticBT <?php echo $this->translate('All Rights Reserved.') ?></p>
+            </footer>
+        </div>
+        <?php echo $this->inlineScript()            
+            ->prependFile('/dist/js/app/controllers/BodyCtrl.js')
+            ->prependFile('/dist/js/scripts.min.js'); ?>
+    </body>
+</html>

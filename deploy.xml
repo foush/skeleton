@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="fzyskeleton" default="dev" basedir=".">
+
+    <target name="dev">
+        <echo message="Running deploy script in EC2" />
+        <ssh     host="${host}"
+                 username="${username}"
+                 password="${password}"
+                 command="${command}" />
+        <echo message="Success" />
+    </target>
+
+    <target name="staging">
+        <echo message="Running deploy script in EC2 ${host}" />
+        <ssh     host="${host}"
+                 username="${username}"
+                 password="${password}"
+                 command="${command}" />
+        <echo message="Running deploy script in EC2 ${host2}" />
+        <ssh     host="${host2}"
+                 username="${username}"
+                 password="${password}"
+                 command="${command}" />
+        <echo message="Success" />
+    </target>
+
+</project>

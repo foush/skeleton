@@ -1,0 +1,62 @@
+//==================================================================
+// Datepicker Partial
+// Styles for jQuery UI Datepicker.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Datepicker
+// =================================================================
+body .ui-datepicker {
+	padding: 0; background-color: darken($color_orient, 10%);
+	@include rem(margin-top, 1px);
+
+	// Header
+	//--------------------------------------------------------------
+	.ui-datepicker-header {
+		background-color: $color_orient; font-weight: 600; color: #fff;
+		@include rem(padding, 10px 0);
+	}
+	.ui-datepicker-prev {
+		cursor: pointer;
+		@include rem(top, 10px);
+		@include rem(left, 10px);
+		@include rem(padding, 6px);
+	}
+	.ui-datepicker-prev .ui-icon {
+		position: static; display: block; width: 100%; height: 100%; margin: 0; background: url('../img/icons/i_left-arrow.svg') no-repeat 50% 50%; background-size: 100% auto;
+	}
+	.ui-datepicker-next {
+		cursor: pointer;
+		@include rem(top, 10px);
+		@include rem(right, 10px);
+		@include rem(padding, 6px);
+	}
+	.ui-datepicker-next .ui-icon {
+		position: static; display: block; width: 100%; height: 100%; margin: 0; background: url('../img/icons/i_right-arrow.svg') no-repeat 50% 50%; background-size: 100% auto;
+	}
+
+	// Table
+	//--------------------------------------------------------------
+	table {
+		margin: 0;
+	}
+	th {
+		color: #fff;
+	}
+	td {
+		padding: 0; background-color: rgba(#000, .25);
+		@include transition(all $animation_speed ease-in-out);
+	}
+	td a {
+		color: #fff; text-align: center;
+		@include rem(padding, 6px);
+	}
+	td.ui-datepicker-other-month {
+		background: none;
+	}
+
+	td:not(.ui-datepicker-other-month):hover {
+		background-color: $color_orient;
+	}
+
+}

@@ -1,0 +1,56 @@
+//==================================================================
+// Activities Partial
+// Styles for application activities.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Activities
+// =================================================================
+.activities {
+	padding: 0; margin: 0; list-style: none;
+
+	li {
+		position: relative; background-color: lighten($color_silver_chalice, 35%); box-shadow: 0 0 0 1px rgba(#000, 0); font-size: 0; line-height: 0; overflow: hidden;
+		@include rem(padding, 20px 110px 20px 20px);
+		@include rem(margin, 16px 0);
+		@include rem(border-radius, $corners);
+		@include transition(all $animation_speed ease-in-out);
+
+		div.field {
+			display: inline-block; width: percentage(1/6); line-height: 1.5;
+			@include rem(font-size, 16px);
+		}
+		div.field:last-of-type {
+			display: block; width: 100%; margin: 0;
+		}
+		label {
+			display: block; width: auto; color: $color_orient; font-weight: 600;
+		}
+		input[type="number"] {
+			@include rem(width, 60px);
+		}
+		textarea {
+			width: 100%;
+		}
+		.notes {
+			display: block;
+		}
+		.buttons {
+			position: absolute; display: block; width: auto; line-height: 1.5; opacity: 0;
+			@include rem(top, 20px);
+			@include rem(right, -20px);
+			@include rem(font-size, 16px);
+			@include transition(all $animation_speed ease-in-out);
+		}
+
+		&:hover {
+			box-shadow: 0 0 0 1px rgba(#000, .2);
+		}
+		&:hover .buttons {
+			opacity: 1;
+			@include rem(right, 20px);
+		}
+
+	}
+
+}

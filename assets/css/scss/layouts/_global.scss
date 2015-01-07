@@ -1,0 +1,28 @@
+//==================================================================
+// Global Partial
+// Styles for global layout.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Global Layout
+// =================================================================
+body {}
+
+.header-container,
+.content-container,
+.footer-container {
+	@include rem(min-width, 1280px);
+}
+
+.wrapper {
+	margin: 0 auto;
+	@include rem(width, 1280px);
+}
+
+.outer-container {
+	@include outer-container;
+	max-width: 100%;
+}
+.span-half {
+	@include span-columns(6);
+}

@@ -1,0 +1,14 @@
+<?php
+	$this->inlineScript()->appendFile('/dist/js/app/services/list.js')
+		->appendFile('/dist/js/app/controllers/user/IndexCtrl.js');
+?>
+<div data-ng-controller="IndexCtrl">
+	<div class="action-bar">
+		<h1>User Management</h1>
+		<div class="buttons">
+			<a class="button primary" href="<?php echo $this->url('home/system/user') ?>">New User</a>
+		</div>
+	</div>
+	<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="row-border hover"></table>
+
+</div>

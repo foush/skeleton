@@ -1,0 +1,175 @@
+//==================================================================
+// Forms Partial
+// Styles for various forms and form elements.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Variables
+// =================================================================
+
+
+// Wrappers
+// =================================================================
+form {}
+
+
+	// Legend
+	//--------------------------------------------------------------
+	legend {
+		position: absolute; top: 0; left: 0; width: 100%; margin: 0; background-color: rgba(#000,.05); font-weight: 600;
+		@include rem(padding, 10px 10px 10px 40px);
+	}
+
+
+	// Fieldsets / Wrappers
+	//--------------------------------------------------------------
+	fieldset { padding: 0; margin: 0; border: 0; }
+
+		.fieldset {
+			position: relative; background-color: lighten($color_silver_chalice, 35%); overflow: hidden;
+			@include rem(padding, 84px 40px 40px);
+			@include rem(margin, 0 0 20px);
+			@include rem(border-radius, $corners);
+		}
+
+		.field, .fieldpair, .fieldgroup {
+			@include rem(margin, 0 0 16px);
+		}
+		.fieldpair, .fieldgroup {}
+
+		// Field Pair
+		.fieldpair > .field {}
+		.fieldpair > .field:first-child {}
+
+		// Field Group
+		.fieldgroup .field {}
+
+		// Field Group - Date Range
+		.field.date-range {}
+		.field.date-range input {
+			@include rem(width, 180px);
+		}
+		.field.date-range span {
+			display: inline-block;
+			@include rem(margin, 0 13px);
+		}
+
+		// Notes
+		.field small {
+			color: $color_silver_chalice; font-style: italic;
+			@include rem(margin-left, 8px);
+		}
+
+
+	// Checkboxes & Radios
+	//--------------------------------------------------------------
+	.checkboxes,
+	.radios {
+		padding: 0; background: none; border-radius: 0;
+		@include rem(margin, 0 0 16px);
+
+		legend {
+			position: static; float: left; display: inline-block; background: none; padding: 0; margin: 0; font-weight: 400;
+			@include rem(width, 200px);
+		}
+		ul {
+			display: inline-block; padding: 0; margin: 0; list-style: none;
+		}
+		.field {
+			margin: 0;
+		}
+		input + label {
+			width: auto;
+		}
+
+	}
+
+
+	// Labels
+	//--------------------------------------------------------------
+	label {
+		display: inline-block;
+		@include rem(width, 200px);
+	}
+
+		// Fieldgroup Label
+		.fieldgroup-label {}
+
+		// Checkbox, Radio Labels
+		.fieldgroup-label + ul,
+		.fieldgroup-label + ol {}
+		.fieldgroup-label + ul li,
+		.fieldgroup-label + ol li,
+		.fieldgroup-label + ul label,
+		.fieldgroup-lable + ol label {}
+
+		// Required
+		.req {
+			color: $color_red_orange; font-style: normal;
+		}
+
+
+	// Fields
+	//--------------------------------------------------------------
+	input {
+		background-color: #fff; border: 1px solid lighten($color_silver_chalice, 20%);
+		@include rem(width, 400px);
+		//@include rem(height, 40px);
+		@include rem(padding, 8px 10px);
+		@include transition(all $animation_speed ease-in-out);
+
+		// Checkbox & Radio
+		&[type="checkbox"], &[type="radio"] {
+			width: auto;
+		}
+		&[type="checkbox"]:focus, &[type="radio"]:focus {}
+
+		// Search
+		&[type="search"] {}
+		&[type="search"]::-ms-clear {
+			display: none;
+		}
+
+		// File
+		&[type="file"] {
+			width: auto; height: auto; border: 0;
+		}
+
+		// Submit
+		&[type="submit"] {
+			width: auto;
+		}
+
+		// Required
+		&:required {
+			box-shadow: none;
+		}
+
+		// Focus
+		&:focus {
+			background-color: lighten($color_orient, 70%); border-color: $color_orient;
+		}
+
+		// Disabled
+		&:disabled {
+			padding: 0; background-color: rgba(#fff, .25); border-color: rgba(lighten($color_silver_chalice, 20%), 0);
+		}
+
+	}
+	textarea {
+		background-color: #fff; border: 1px solid lighten($color_silver_chalice, 20%);
+		@include rem(width, 400px);
+		@include rem(height, 100px);
+		@include rem(padding, 10px);
+		@include transition(all $animation_speed ease-in-out);
+	
+		// Focus
+		&:focus {
+			background-color: lighten($color_orient, 70%); border-color: $color_orient;
+		}
+
+		// Disabled
+		&:disabled {
+			height: auto; padding: 0; background-color: rgba(#fff, .25); border-color: rgba(lighten($color_silver_chalice, 20%), 0); resize: none;
+		}
+	}
