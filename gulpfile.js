@@ -10,18 +10,27 @@ var gulp         = require('gulp'),
     imagemin     = require('gulp-imagemin'),
     svgo         = require('gulp-svgo'),
     ngAnnotate   = require('gulp-ng-annotate'),
+    plumber = require('gulp-plumber'),
+    notify = require("gulp-notify"),
     rename       = require('gulp-rename');
 
 // Error Handling
-var onError = function (err) {
-    gutil.beep();
-    console.log(err);
+var onError = function(err) {
+    // Notfiy (message and sound)
+    notify.onError({
+        title:    "Gulp",
+        subtitle: "Failure!",
+        message:  "Error: <%= error.message %>",
+        sound:    "Funk"
+    })(err);
+ 
+    this.emit('end');
 };
 
 // Compile Our Sass
 gulp.task('sass', function() {
     return gulp.src('assets/css/scss/**/*.scss')
-        .on('error', onError)
+        .pipe(plumber({errorHandler: onError}))
         .pipe(sass({
             includePaths: ['styles'].concat(neat)
         }))
@@ -31,6 +40,7 @@ gulp.task('sass', function() {
 
 gulp.task('angular', function() {
     return gulp.src(['assets/js/app/**/*.js'])
+        .pipe(plumber({errorHandler: onError}))
         .pipe(ngAnnotate())
         // disabling for now while debugging
 //        .pipe(uglify())
@@ -54,7 +64,8 @@ gulp.task('scripts', function() {
         'assets/js/init.js',
         'assets/js/app/services/util.js',
         'assets/js/app/services/alert.js',
-        'assets/js/app/controllers/AlertCtrl.js'
+        'assets/js/app/controllers/AlertCtrl.js',
+        'assets/js/app/directives/dt-events.js'
     ])
         .pipe(concat('scripts.min.js'))
         .pipe(ngAnnotate())
@@ -67,7 +78,7 @@ gulp.task('scripts', function() {
 gulp.task('images', function() {
     return gulp.src('assets/img/**/*')
         .pipe(newer('img'))
-        .pipe(imagemin())
+        //.pipe(imagemin())
         .pipe(gulp.dest('src/public/dist/img'));
 });
 
@@ -76,6 +87,14 @@ gulp.task('svg', function() {
     return gulp.src('assets/img/**/*.svg')
         .pipe(svgo())
         .pipe(gulp.dest('src/public/dist/img'))
+});
+
+// Copy fonts
+gulp.task('fonts', function() {
+    return gulp.src('assets/css/fonts/*')
+        // .pipe(newer('img'))
+        //.pipe(imagemin())
+        .pipe(gulp.dest('src/public/dist/css/fonts/'));
 });
 
 // Watch Files For Changes
@@ -90,7 +109,8 @@ gulp.task('watch', function() {
     gulp.watch(root + 'img/**/*.jpg', ['images']);
     gulp.watch(root + 'img/**/*.png', ['images']);
     gulp.watch(root + 'img/**/*.svg', ['svg']);
+    gulp.watch(root + 'css/fonts/*', ['fonts']);
 });
 
 // Default Task
-gulp.task('default', ['sass', 'angular', 'scripts', 'images', 'svg']);
+gulp.task('default', ['sass', 'angular', 'scripts', 'images', 'svg', 'fonts']); //
