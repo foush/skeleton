@@ -39,5 +39,4 @@ class Select extends Field
     {
         return $this->selectOptions;
     }
-
 }

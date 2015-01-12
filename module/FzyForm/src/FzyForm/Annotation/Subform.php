@@ -96,5 +96,4 @@ class Subform extends Field
     {
         return $this->getter;
     }
-
 }

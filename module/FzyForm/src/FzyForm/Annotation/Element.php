@@ -52,7 +52,7 @@ class Element
 
     protected function generateDefaultName()
     {
-        return static::ELEMENT_TYPE . (static::$counter++);
+        return static::ELEMENT_TYPE.(static::$counter++);
     }
 
     /**
@@ -323,5 +323,4 @@ class Element
 
         return $this;
     }
-
 }

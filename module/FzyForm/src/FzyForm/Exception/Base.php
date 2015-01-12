@@ -1,4 +1,6 @@
 <?php
 namespace FzyForm\Exception;
 
-class Base extends \Exception {}
+class Base extends \Exception
+{
+}

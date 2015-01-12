@@ -1,5 +1,6 @@
 <?php
 namespace FzyForm\Service\Update;
+
 use FzyForm\Annotation\Subform;
 
 class Base extends \FzyCommon\Service\Update\Base
@@ -38,5 +39,4 @@ class Base extends \FzyCommon\Service\Update\Base
 
         return parent::reset();
     }
-
 }

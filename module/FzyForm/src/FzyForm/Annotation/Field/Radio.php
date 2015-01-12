@@ -31,5 +31,4 @@ class Radio extends Field
     {
         return $this->getZendFormElement()->getValueOptions();
     }
-
 }

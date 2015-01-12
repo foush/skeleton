@@ -67,5 +67,4 @@ class FieldSet extends Element
     {
         return $this->rowConfig;
     }
-
 }

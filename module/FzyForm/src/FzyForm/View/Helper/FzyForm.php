@@ -27,5 +27,4 @@ class FzyForm extends Base
     {
         return $this->getService('FzyForm\Render')->handle($form, $options);
     }
-
 }

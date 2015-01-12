@@ -48,7 +48,6 @@ class Field extends Element
         $this->helpTemplate     = $this->extractValue($elementData, 'helpTemplate', static::DEFAULT_TEMPLATE_ELEMENT_HELP);
         $this->errorTemplate    = $this->extractValue($elementData, 'errorTemplate', static::DEFAULT_TEMPLATE_ELEMENT_ERROR);
         $this->ngModel          = $this->extractValue($elementData, 'ngModel');
-
     }
 
     public static function create(array $elementData, ElementInterface $element, AnnotatedForm $form, EntityToForm $e2f)
@@ -229,7 +228,6 @@ class Field extends Element
     public function onAddedTo(Row $row)
     {
         // allows config of that row
-
     }
 
     /**
@@ -318,5 +316,4 @@ class Field extends Element
     {
         return $this->fieldsetName;
     }
-
 }

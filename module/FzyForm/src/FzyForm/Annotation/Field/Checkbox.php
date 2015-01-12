@@ -1,7 +1,6 @@
 <?php
 namespace FzyForm\Annotation\Field;
 
-use FzyForm\Annotation\Field;
 use FzyForm\Annotation\Row;
 
 class Checkbox extends Radio
@@ -17,7 +16,7 @@ class Checkbox extends Radio
     {
         parent::__construct($elementData);
 
-        $this->valueLabel = $this->extractValue($elementData, 'value_label', self::DEFAULT_VALUE_LABEL );
+        $this->valueLabel = $this->extractValue($elementData, 'value_label', self::DEFAULT_VALUE_LABEL);
     }
 
     public function onAddedTo(Row $row)

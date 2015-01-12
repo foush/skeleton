@@ -24,5 +24,4 @@ class Render extends Base
 
         return $this->getServiceLocator()->get('FzyCommon\Render')->handle($annotated->getTemplate(), array('element' => $annotated, 'options' => $options));
     }
-
 }

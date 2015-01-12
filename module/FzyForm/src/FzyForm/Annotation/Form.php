@@ -55,9 +55,7 @@ class Form extends Element
             }
             $field = Field::create($data, $formElement, $this, $e2f);
             $this->addField($field);
-
         }
-
     }
 
     public function addFieldSet(FieldSet $fieldSet)
@@ -146,5 +144,4 @@ class Form extends Element
     {
         return $this->hasDenotesText;
     }
-
 }

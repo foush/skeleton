@@ -35,5 +35,4 @@ class Row extends Element
     {
         return $this->fieldSetName;
     }
-
 }
